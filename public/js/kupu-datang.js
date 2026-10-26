@@ -25,7 +25,9 @@
     kupu.style.removeProperty('--kupu-dy');
   };
 
-  kupu.addEventListener('animationend', (e) => e.animationName === 'kupu-pembuka' && selesai(), {
+  // Kepakan pelan terakhir (dari sayap, menggelembung ke svg) berakhir paling akhir;
+  // saat itu kupu-kupu sudah hinggap dan diam.
+  kupu.addEventListener('animationend', (e) => e.animationName === 'kupu-kepak-akhir' && selesai(), {
     signal: henti.signal,
   });
   for (const jenis of ['pointerdown', 'keydown', 'wheel', 'touchstart']) {

@@ -210,47 +210,116 @@ p {
     animation: muncul 0.6s ease 3.5s forwards;
   }
 
+  /* Gerak mendatar, naik-turun, ukuran, dan kemiringan dianimasikan terpisah, masing-masing
+     dengan perlambatannya sendiri. Karena temponya berbeda, jalurnya melengkung mulus tanpa
+     titik berhenti, dan semuanya melambat bersama tepat saat hinggap.
+     Linimasa 3,6 detik: muncul dan membesar (0–0,9 d), melayang (0,9–1,6 d), terbang ke
+     tempatnya (1,6–3,6 d). */
   [data-kupu='terbang'] .kupu-beranda {
     position: relative;
     z-index: 10;
-    animation: kupu-pembuka 3.4s cubic-bezier(0.45, 0, 0.2, 1) both;
+    animation:
+      kupu-muncul 0.6s ease-out both,
+      kupu-mendatar 3.6s both,
+      kupu-naik 3.6s both,
+      kupu-ukuran 3.6s both,
+      kupu-miring 3.6s both;
   }
 
-  /* Sayap mengepak: kelompok gambar dipersempit dan dilebarkan di sekitar badan.
-     rotate(-8deg) mengulang kemiringan bawaan kupu-kupu (lihat src/lib/kupu.ts). */
+  /* Sayap mengepak cepat selama terbang, lalu satu kepakan pelan yang lebih kecil saat
+     hinggap, agar berhentinya tidak mendadak. rotate(-8deg) mengulang kemiringan bawaan
+     kupu-kupu (lihat src/lib/kupu.ts). */
   [data-kupu='terbang'] .kupu-beranda > g {
     transform-box: view-box;
     transform-origin: 60px 40px;
-    animation: kupu-kepak 0.42s ease-in-out 8;
+    animation:
+      kupu-kepak 0.42s ease-in-out 7,
+      kupu-kepak-akhir 0.7s ease-in-out 2.94s;
   }
 
   [data-kupu='terbang'] .kepala,
   [data-kupu='terbang'] .kaki,
   [data-kupu='terbang'] .beranda > :not(.kupu-beranda) {
-    animation: muncul 1s ease 2.3s both;
+    animation: muncul 1.1s ease 2.4s both;
   }
 }
 
 /* --kupu-dx/--kupu-dy: jarak dari tempat kupu-kupu ke tengah layar (dihitung kupu-datang.js). */
-@keyframes kupu-pembuka {
-  0% {
+@keyframes kupu-muncul {
+  from {
     opacity: 0;
-    transform: translate(var(--kupu-dx), var(--kupu-dy)) scale(0.15);
   }
-  25% {
+  to {
     opacity: 1;
-    transform: translate(var(--kupu-dx), var(--kupu-dy)) scale(2.4);
   }
-  45% {
-    transform: translate(var(--kupu-dx), calc(var(--kupu-dy) - 1rem)) scale(2.4) rotate(-3deg);
-  }
-  75% {
-    transform: translate(calc(var(--kupu-dx) * 0.35), calc(var(--kupu-dy) * 0.25 - 1.5rem))
-      scale(1.5) rotate(4deg);
+}
+
+@keyframes kupu-mendatar {
+  0%,
+  44% {
+    translate: var(--kupu-dx) 0;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
   }
   100% {
-    opacity: 1;
-    transform: none;
+    translate: 0 0;
+  }
+}
+
+/* Naik-turun memakai top (kupu-kupu position: relative selama pembuka), bukan transform,
+   karena transform diterapkan setelah scale/rotate dan jaraknya akan ikut membesar. */
+@keyframes kupu-naik {
+  0%,
+  25% {
+    top: var(--kupu-dy);
+    animation-timing-function: ease-in-out;
+  }
+  35% {
+    top: calc(var(--kupu-dy) - 0.8rem);
+    animation-timing-function: ease-in-out;
+  }
+  44% {
+    top: var(--kupu-dy);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.15, 1);
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes kupu-ukuran {
+  0% {
+    scale: 0.15;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  25%,
+  44% {
+    scale: 2.4;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes kupu-miring {
+  0% {
+    rotate: -10deg;
+    animation-timing-function: ease-out;
+  }
+  25% {
+    rotate: 0deg;
+    animation-timing-function: ease-in-out;
+  }
+  44% {
+    rotate: -3deg;
+    animation-timing-function: ease-in-out;
+  }
+  72% {
+    rotate: 6deg;
+    animation-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
+  }
+  100% {
+    rotate: 0deg;
   }
 }
 
@@ -270,6 +339,16 @@ p {
   }
   50% {
     transform: rotate(-8deg) scaleX(0.3);
+  }
+}
+
+@keyframes kupu-kepak-akhir {
+  0%,
+  100% {
+    transform: rotate(-8deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(-8deg) scaleX(0.7);
   }
 }
 
