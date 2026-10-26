@@ -282,7 +282,36 @@ p {
 .sumber {
   font-size: 0.9rem;
   color: var(--tinta-lembut);
+  margin-bottom: 0.75rem;
+}
+
+.musik {
   margin-bottom: 2.5rem;
+}
+
+.tombol-musik {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.3em 0.9em;
+  border: 1px solid var(--garis);
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--tinta-lembut);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.tombol-musik[hidden] {
+  display: none;
+}
+
+.tombol-musik:hover,
+.tombol-musik[aria-pressed='true'] {
+  border-color: var(--abu-2);
+  color: var(--tinta-pekat);
 }
 
 .waktu-baca {
@@ -341,6 +370,15 @@ p {
 .renungan p:last-child {
   color: var(--tinta-pekat);
   font-style: italic;
+}
+
+.tentang h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--tinta-lembut);
 }
 
 .catatan {
@@ -429,7 +467,8 @@ p {
 
   .kepala,
   .kaki,
-  .berikutnya {
+  .berikutnya,
+  .musik {
     display: none;
   }
 

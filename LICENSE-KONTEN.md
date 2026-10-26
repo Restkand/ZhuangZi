@@ -14,4 +14,9 @@ Anda boleh membagikan dan mengadaptasi konten ini, dengan syarat:
 Teks asli Zhuangzi (abad ke-4 SM) dan terjemahan James Legge (1891) adalah domain publik.
 Lisensi ini hanya berlaku untuk penceritaan ulang dan ilustrasi yang dibuat untuk proyek ini.
 
+Musik latar (`public/musik/`) bukan karya proyek ini dan tetap memakai lisensinya sendiri:
+"Pei Lan (佩蘭)", dimainkan oleh Charlie Huang, dari Wikimedia Commons
+(https://commons.wikimedia.org/wiki/File:Pei_Lan.ogg), CC BY 2.5
+(https://creativecommons.org/licenses/by/2.5/).
+
 Kode sumber website dilisensikan terpisah di bawah MIT (lihat `LICENSE`).
