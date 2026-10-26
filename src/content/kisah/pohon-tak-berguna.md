@@ -2,7 +2,7 @@
 judul: "Pohon yang Tak Berguna"
 bab: "Bab 1: Pengembaraan Bebas"
 ilustrasi: "/ilustrasi/pohon-tak-berguna.svg"
-ilustrasiAlt: "Gambar tinta: pohon tua berbatang berbonggol dengan dahan-dahan yang berkelok dan berpilin, berdiri sendiri di padang rumput yang luas."
+ilustrasiAlt: "Gambar tinta: pohon tua berbatang berbonggol dengan dahan-dahan yang berkelok dan berpilin di bawah kanopi daun yang lebar dan teduh, berdiri sendiri di padang rumput yang luas."
 kutipan: "Mengapa tidak kamu tanam di padang yang luas, lalu berbaring dengan tenang di bawahnya?"
 teksAsli: "逍遙乎寢臥其下"
 teksAsliArti: "Berbaring dengan bebas dan tenang di bawahnya."
