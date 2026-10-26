@@ -405,6 +405,12 @@ p {
   color: var(--tinta-lembut);
 }
 
+.bagikan {
+  margin-top: -0.5rem;
+  font-size: 0.8rem;
+  color: var(--tinta-lembut);
+}
+
 .berikutnya {
   margin-top: 3rem;
   padding-top: 1.5rem;
@@ -484,7 +490,8 @@ p {
 
   .kepala,
   .kaki,
-  .berikutnya {
+  .berikutnya,
+  .bagikan {
     display: none;
   }
 
