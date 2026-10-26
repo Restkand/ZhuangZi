@@ -12,6 +12,12 @@ const kisah = defineCollection({
     // Satu atau dua kalimat dari kisah untuk kartu Story Instagram. Bila kosong,
     // kartu memakai ringkasan paragraf pertama.
     kutipan: z.string().optional(),
+    // Opsional: satu baris teks asli Tionghoa (domain publik) beserta artinya,
+    // ditampilkan di awal kisah.
+    teksAsli: z.string().optional(),
+    teksAsliArti: z.string().optional(),
+    // Opsional: 2–3 kalimat "Tentang kisah ini", ditampilkan setelah catatan sumber.
+    tentang: z.string().optional(),
     urutan: z.number(),
   }),
 });

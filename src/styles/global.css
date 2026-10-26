@@ -586,10 +586,88 @@ p {
   color: var(--tinta-lembut);
 }
 
-.bagikan {
-  margin-top: -0.5rem;
-  font-size: 0.8rem;
+/* Satu baris teks asli Tionghoa di awal kisah. Lora tidak punya aksara Tionghoa, jadi
+   dipakai font serif Tionghoa yang tersedia di perangkat pembaca. */
+.teks-asli {
+  margin: -1rem 0 2.5rem;
+}
+
+.teks-asli .hanzi {
+  display: block;
+  font-family: 'Noto Serif TC', 'Noto Serif CJK TC', 'Songti TC', 'PMingLiU', 'MingLiU', serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.3em;
+  line-height: 1.6;
+  color: var(--tinta-pekat);
+}
+
+.teks-asli .arti {
+  display: block;
+  font-size: 0.85rem;
+  font-style: italic;
   color: var(--tinta-lembut);
+}
+
+.tentang-kisah {
+  margin: 2rem 0 1.5rem;
+  padding: 1.25rem 1.25rem 1rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--tinta) 5%, transparent);
+}
+
+.tentang-kisah h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+  color: var(--tinta-lembut);
+}
+
+.tentang-kisah p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Baris bagikan: tautan teks kecil, tombol dibuat tampak seperti tautan. */
+.bagikan {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.1rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--tinta-lembut);
+}
+
+.bagikan .label {
+  flex-basis: 100%;
+  font-size: 0.8rem;
+  font-variant: small-caps;
+  letter-spacing: 0.14em;
+}
+
+.bagikan a,
+.bagikan button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-color: var(--garis);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  cursor: pointer;
+}
+
+.bagikan a:hover,
+.bagikan button:hover {
+  text-decoration-color: currentColor;
+}
+
+.bagikan button[hidden] {
+  display: none;
 }
 
 .berikutnya {

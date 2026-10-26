@@ -4,6 +4,9 @@ bab: "Bab 3: Merawat Kehidupan"
 ilustrasi: "/ilustrasi/juru-masak-ding.svg"
 ilustrasiAlt: "Gambar tinta: pisau dapur lebar di atas talenan kayu bundar, dengan beberapa irisan kecil di tepinya."
 kutipan: "Di antara sendi selalu ada ruang. Mata pisau yang tipis bisa bergerak dengan bebas di sana."
+teksAsli: "庖丁為文惠君解牛"
+teksAsliArti: "Juru masak Ding mengurai seekor sapi untuk Raja Wenhui."
+tentang: "Kisah ini termasuk yang paling terkenal dari kitab Zhuangzi. Darinya lahir dua ungkapan Tionghoa yang masih dipakai sampai sekarang: 庖丁解牛, untuk keahlian yang sudah menyatu dengan diri, dan 游刃有余, “pisau bergerak dengan lapang”, untuk orang yang bisa mengerjakan sesuatu dengan tenang karena benar-benar memahaminya."
 urutan: 1
 ---
 
