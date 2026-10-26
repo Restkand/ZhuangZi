@@ -1,4 +1,5 @@
 import sharp from 'sharp';
+import { LORA, barisTengah, bungkus } from './teks-gambar.ts';
 
 const KERTAS = '#F3EEE2';
 
@@ -26,32 +27,60 @@ export async function gambarPratinjau(svg: Buffer, lebar: number, tinggi: number
     .toBuffer();
 }
 
-// Kartu Story Instagram 1080×1920: kupu-kupu di atas, ilustrasi kisah di tengah, goresan
-// kuas, lalu ruang kosong di bawah untuk stiker tautan. Stempel sudah ada di ilustrasi.
-// Tanpa teks; judul ditulis pembagi langsung di Instagram.
-export async function kartuStory(ilustrasi: Buffer, kupu: Buffer) {
+interface IsiKartu {
+  ilustrasi: Buffer;
+  kupu: Buffer;
+  kutipan: string;
+  judul: string;
+  bab: string;
+}
+
+// Kartu Story Instagram 1080×1920. Semua isi berada di zona aman (y 230–1650) agar tidak
+// tertutup foto profil di atas dan kolom balasan di bawah. Dari atas: kupu-kupu dan nama
+// situs, ilustrasi, kutipan, judul dan bab, alamat situs, lalu ruang untuk stiker tautan.
+export async function kartuStory({ ilustrasi, kupu, kutipan, judul, bab }: IsiKartu) {
   const LEBAR = 1080;
   const TINGGI = 1920;
+  const TENGAH = LEBAR / 2;
+  const TEKS_MAKS = 860;
 
   const tengah = async (svg: Buffer, lebar: number, tinggi: number, top: number) => {
     const { data, info } = await sharp(svg, { density: 300 })
       .resize({ width: lebar, height: tinggi, fit: 'inside' })
       .png()
       .toBuffer({ resolveWithObject: true });
-    return { input: data, top, left: Math.round((LEBAR - info.width) / 2) };
+    return { lapisan: { input: data, top, left: Math.round((LEBAR - info.width) / 2) }, tinggi: info.height };
   };
 
-  const goresan = Buffer.from(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="25" viewBox="0 0 96 12"><path fill="#888780" d="M4 7C22 3.5 52 3 78 5.5c6 .5 10 1.1 12 1.9-10 .2-30 .8-50 1C24 8.6 12 8.4 4 7Z"/></svg>`
+  const kupuKecil = await tengah(kupu, 130, 90, 230);
+  const gambar = await tengah(ilustrasi, 900, 580, 410);
+
+  // Teks ditulis sebagai satu SVG transparan selebar kartu, lalu ditumpuk di atasnya.
+  const teks: string[] = [];
+  teks.push(barisTengah('POHON TAK BERGUNA', { font: LORA.tebal, ukuran: 24, warna: '#5F5E5A', jarak: 6 }, TENGAH, 368));
+
+  let y = 410 + gambar.tinggi + 120;
+  const gayaKutipan = { font: LORA.miring, ukuran: 54, warna: '#2C2C2A' };
+  for (const baris of bungkus(`“${kutipan}”`, gayaKutipan, TEKS_MAKS)) {
+    teks.push(barisTengah(baris, gayaKutipan, TENGAH, y));
+    y += 78;
+  }
+
+  y += 50;
+  const gayaJudul = { font: LORA.tebal, ukuran: 32, warna: '#2C2C2A' };
+  for (const baris of bungkus(judul, gayaJudul, TEKS_MAKS)) {
+    teks.push(barisTengah(baris, gayaJudul, TENGAH, y));
+    y += 46;
+  }
+  teks.push(barisTengah(`Dari kitab Zhuangzi, ${bab}`, { font: LORA.miring, ukuran: 26, warna: '#5F5E5A' }, TENGAH, y + 4));
+  teks.push(barisTengah('pohontakberguna.com', { font: LORA.biasa, ukuran: 26, warna: '#888780', jarak: 1 }, TENGAH, y + 80));
+
+  const lapisanTeks = Buffer.from(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${LEBAR}" height="${TINGGI}">${teks.join('')}</svg>`
   );
-  const lapisan: sharp.OverlayOptions[] = [
-    await tengah(kupu, 220, 150, 250),
-    await tengah(ilustrasi, 960, 620, 520),
-    { input: goresan, top: 1180, left: (LEBAR - 200) / 2 },
-  ];
 
   return sharp({ create: { width: LEBAR, height: TINGGI, channels: 3, background: KERTAS } })
-    .composite(lapisan)
+    .composite([kupuKecil.lapisan, gambar.lapisan, { input: lapisanTeks, top: 0, left: 0 }])
     .png({ compressionLevel: 9, palette: true })
     .toBuffer();
 }

@@ -6,12 +6,18 @@ import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { isiKupu, viewBoxKupu } from '../../lib/kupu';
 import { kartuStory } from '../../lib/pratinjau';
+import { ringkasan } from '../../lib/ringkasan';
 
 export const getStaticPaths = (async () => {
   const daftar = await getCollection('kisah');
   return daftar.map((kisah) => ({
     params: { id: kisah.id },
-    props: { ilustrasi: kisah.data.ilustrasi },
+    props: {
+      ilustrasi: kisah.data.ilustrasi,
+      judul: kisah.data.judul,
+      bab: kisah.data.bab,
+      kutipan: kisah.data.kutipan ?? ringkasan(kisah.body ?? '', 130),
+    },
   }));
 }) satisfies GetStaticPaths;
 
@@ -22,6 +28,12 @@ export const GET: APIRoute = async ({ props }) => {
       { pekat: '#2C2C2A', abu: '#888780', abuMuda: '#B4B2A9' }
     )}</svg>`
   );
-  const png = await kartuStory(ilustrasi, kupu);
+  const png = await kartuStory({
+    ilustrasi,
+    kupu,
+    kutipan: props.kutipan,
+    judul: props.judul,
+    bab: props.bab,
+  });
   return new Response(new Uint8Array(png), { headers: { 'Content-Type': 'image/png' } });
 };
