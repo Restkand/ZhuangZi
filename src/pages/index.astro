@@ -2,7 +2,7 @@
 import Dasar from '../layouts/Dasar.astro';
 import Kupu from '../components/Kupu.astro';
 import Potret from '../components/Potret.astro';
-import { daftarKisah } from '../lib/kisah';
+import { daftarKisah, nomorBab } from '../lib/kisah';
 import { DESKRIPSI, NAMA, SLOGAN } from '../lib/situs';
 
 const daftar = await daftarKisah();
@@ -39,7 +39,7 @@ const kelompok = [
 ].map((k) => ({
   ...k,
   kisah: daftar.filter((kisah) => {
-    const nomor = Number(kisah.data.bab.match(/Bab (\d+)/)?.[1]);
+    const nomor = nomorBab(kisah.data.bab);
     return nomor >= k.dari && nomor <= k.sampai;
   }),
 }));

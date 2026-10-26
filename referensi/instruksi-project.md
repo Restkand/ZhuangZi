@@ -44,7 +44,7 @@ kutipan: "Satu atau dua kalimat untuk kartu Story Instagram."
 teksAsli: "一行原文"
 teksAsliArti: "Arti baris teks asli itu."
 tentang: "Dua atau tiga kalimat tentang kisah ini."
-urutan: 2
+urutan: 1
 ---
 
 Paragraf pertama kisah.
@@ -67,7 +67,7 @@ Keterangan kolom:
 - teksAsli: satu baris pendek teks asli Tionghoa dari kisah ini, disalin persis dari ctext.org (aksara tradisional), biasanya kalimat pembukanya. Jangan mengarang atau menyusun sendiri; bila ragu, kosongkan kolom ini dan katakan.
 - teksAsliArti: arti baris teks asli itu dalam satu kalimat bahasa Indonesia.
 - tentang: dua atau tiga kalimat fakta ringan tentang kisah ini, misalnya seberapa terkenal kisahnya, ungkapan Tionghoa yang lahir darinya, atau letaknya dalam kitab. Hanya fakta yang pasti; bila ragu, kosongkan dan katakan.
-- urutan: tanyakan kepada saya nomor urut berikutnya bila belum jelas.
+- urutan: urutan kisah di dalam bab yang sama, mulai dari 1. Website mengurutkan kisah menurut nomor bab, lalu kolom ini. Bila bab tersebut sudah punya kisah lain, tanyakan kepada saya nomornya.
 - Baris <!-- renungan --> wajib ada tepat sebelum bagian renungan.
 
 GAYA ILUSTRASI

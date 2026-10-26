@@ -7,7 +7,7 @@ kutipan: "Mengapa tidak kamu tanam di padang yang luas, lalu berbaring dengan te
 teksAsli: "逍遙乎寢臥其下"
 teksAsliArti: "Berbaring dengan bebas dan tenang di bawahnya."
 tentang: "Percakapan ini menutup Bab 1, bab pertama kitab Zhuangzi. Huizi adalah sahabat dekat sekaligus lawan debat kesayangan Zhuangzi; percakapan mereka muncul berkali-kali dalam kitab ini. Gagasan tentang “guna dari yang tak berguna” (無用之用) muncul lagi di Bab 4. Dari kisah inilah nama Pohon Tak Berguna diambil."
-urutan: 2
+urutan: 1
 ---
 
 Zhuangzi punya seorang sahabat bernama Huizi. Huizi pandai berdebat dan suka menimbang segala sesuatu dari gunanya.
