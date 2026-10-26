@@ -1,0 +1,169 @@
+:root {
+  --kertas: #f6f1e7;
+  --tinta: #3a3936;
+  --tinta-lembut: #6b6a64;
+  --garis: #d3d1c7;
+  --aksen: #a32d2d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --kertas: #1f1c18;
+    --tinta: #e4dccd;
+    --tinta-lembut: #a39b8c;
+    --garis: #4a453d;
+    --aksen: #d9826f;
+  }
+
+  /* Ilustrasi berlatar kertas terang; diredupkan sedikit agar tidak menyilaukan. */
+  .ilustrasi {
+    filter: brightness(0.85) sepia(0.15);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 19px;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--kertas);
+  color: var(--tinta);
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  line-height: 1.8;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--garis);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+.kepala,
+main {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.kepala {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--tinta-lembut);
+}
+
+.kepala a {
+  text-decoration: none;
+}
+
+main {
+  padding-bottom: 4rem;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 1.6rem;
+  line-height: 1.35;
+  margin: 1.5rem 0 0.5rem;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+/* Beranda */
+
+.pengantar,
+.kosong {
+  color: var(--tinta-lembut);
+}
+
+.daftar-kisah {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+}
+
+.daftar-kisah li {
+  margin-bottom: 1.5rem;
+}
+
+.daftar-kisah .bab {
+  display: block;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--tinta-lembut);
+}
+
+/* Halaman kisah */
+
+.ilustrasi {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+  border-radius: 12px;
+}
+
+.sumber {
+  font-size: 0.9rem;
+  color: var(--tinta-lembut);
+  margin-bottom: 2.5rem;
+}
+
+.waktu-baca {
+  white-space: nowrap;
+}
+
+.pemisah {
+  text-align: center;
+  color: var(--tinta-lembut);
+  letter-spacing: 0.5em;
+  margin: 3rem 0;
+}
+
+.renungan {
+  border-left: 1px solid var(--garis);
+  padding-left: 1.25rem;
+  color: var(--tinta);
+}
+
+.renungan h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  font-style: italic;
+  margin: 0 0 1rem;
+  color: var(--tinta-lembut);
+}
+
+.catatan {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--tinta-lembut);
+}
+
+.berikutnya {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--garis);
+}

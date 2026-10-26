@@ -1,0 +1,22 @@
+# Dependensi
+node_modules/
+
+# Hasil build Astro
+dist/
+.astro/
+
+# Vercel
+.vercel/
+
+# Variabel lingkungan
+.env
+.env.*
+
+# Log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Sistem operasi dan editor
+.DS_Store
+Thumbs.db

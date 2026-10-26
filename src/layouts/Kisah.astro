@@ -1,0 +1,41 @@
+---
+import Dasar from './Dasar.astro';
+
+interface Props {
+  judul: string;
+  bab: string;
+  ilustrasi: string;
+  menitBaca: number;
+  berikutnya?: { judul: string; href: string };
+}
+
+const { judul, bab, ilustrasi, menitBaca, berikutnya } = Astro.props;
+---
+
+<Dasar judul={judul}>
+  <article class="kisah">
+    <img class="ilustrasi" src={ilustrasi} alt="" width="550" height="350" />
+    <h1>{judul}</h1>
+    <p class="sumber">
+      <em>Dari kitab Zhuangzi, {bab}</em>
+      <span class="waktu-baca">· sekitar {menitBaca} menit membaca</span>
+    </p>
+
+    <div class="isi">
+      <slot />
+    </div>
+
+    <p class="catatan">
+      Diceritakan ulang dari teks asli Zhuangzi dan terjemahan James Legge (1891), keduanya domain
+      publik, dengan bantuan AI. Bukan terjemahan akademis.
+    </p>
+  </article>
+
+  {
+    berikutnya && (
+      <nav class="berikutnya">
+        <a href={berikutnya.href}>Kisah berikutnya: {berikutnya.judul} →</a>
+      </nav>
+    )
+  }
+</Dasar>

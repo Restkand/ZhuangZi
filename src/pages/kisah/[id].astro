@@ -1,0 +1,29 @@
+---
+import { getCollection, render } from 'astro:content';
+import Kisah from '../../layouts/Kisah.astro';
+
+export async function getStaticPaths() {
+  const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
+  return daftar.map((kisah, i) => ({
+    params: { id: kisah.id },
+    props: { kisah, berikutnya: daftar[i + 1] },
+  }));
+}
+
+const { kisah, berikutnya } = Astro.props;
+const { Content } = await render(kisah);
+
+// Sekitar 200 kata per menit, dibulatkan ke atas.
+const jumlahKata = (kisah.body ?? '').split(/\s+/).filter(Boolean).length;
+const menitBaca = Math.max(1, Math.ceil(jumlahKata / 200));
+---
+
+<Kisah
+  judul={kisah.data.judul}
+  bab={kisah.data.bab}
+  ilustrasi={kisah.data.ilustrasi}
+  menitBaca={menitBaca}
+  berikutnya={berikutnya && { judul: berikutnya.data.judul, href: `/kisah/${berikutnya.id}/` }}
+>
+  <Content />
+</Kisah>

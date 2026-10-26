@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Dasar from '../layouts/Dasar.astro';
+
+const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
+---
+
+<Dasar>
+  <section class="beranda">
+    <h1>Kisah Zhuangzi</h1>
+    <p class="pengantar">
+      Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia. Untuk dibaca
+      pelan-pelan, satu kisah setiap kali.
+    </p>
+
+    {
+      daftar.length > 0 ? (
+        <ol class="daftar-kisah">
+          {daftar.map((kisah) => (
+            <li>
+              <a href={`/kisah/${kisah.id}/`}>{kisah.data.judul}</a>
+              <span class="bab">{kisah.data.bab}</span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="kosong">Kisah pertama sedang ditulis.</p>
+      )
+    }
+  </section>
+</Dasar>
