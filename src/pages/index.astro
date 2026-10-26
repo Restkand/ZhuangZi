@@ -1,6 +1,7 @@
 ---
 import Dasar from '../layouts/Dasar.astro';
 import Kupu from '../components/Kupu.astro';
+import Potret from '../components/Potret.astro';
 import { daftarKisah } from '../lib/kisah';
 import { DESKRIPSI, NAMA, SLOGAN } from '../lib/situs';
 
@@ -53,6 +54,9 @@ const kelompok = [
       Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia. Untuk dibaca
       pelan-pelan, satu kisah setiap kali.
     </p>
+    <a href="/tentang/#zhuangzi" class="tautan-potret" aria-label="Tentang Zhuangzi">
+      <Potret ukuran="kecil" />
+    </a>
     <p class="pengantar">
       Zhuangzi adalah seorang pemikir Tiongkok yang hidup sekitar abad ke-4 sebelum Masehi. Ia jarang
       menasihati. Ia lebih suka bercerita: tentang juru masak, kupu-kupu, dan ikan yang berenang di
