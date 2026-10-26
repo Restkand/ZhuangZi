@@ -196,6 +196,53 @@ p {
   margin: 3.5rem 0 0.5rem -0.5rem;
 }
 
+/* Kupu-kupu terbang masuk ke tempatnya saat beranda pertama kali dibuka dalam satu
+   kunjungan (penanda data-kupu dipasang oleh public/js/tema-awal.js). Halaman tidak
+   ditahan: teks sudah bisa dibaca sejak awal. Mati bila pembaca memilih kurangi gerakan. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-kupu='datang'] .kupu-beranda {
+    animation: kupu-datang 2.4s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+  }
+
+  /* Sayap mengepak: kelompok gambar dipersempit dan dilebarkan di sekitar badan.
+     rotate(-8deg) mengulang kemiringan bawaan kupu-kupu (lihat src/lib/kupu.ts). */
+  [data-kupu='datang'] .kupu-beranda > g {
+    transform-box: view-box;
+    transform-origin: 60px 40px;
+    animation: kupu-kepak 0.32s ease-in-out 7;
+  }
+}
+
+@keyframes kupu-datang {
+  0% {
+    opacity: 0;
+    transform: translate(-7rem, 4rem) rotate(-18deg) scale(0.7);
+  }
+  20% {
+    opacity: 1;
+  }
+  45% {
+    transform: translate(-3.5rem, 0.5rem) rotate(6deg) scale(0.85);
+  }
+  75% {
+    transform: translate(-1rem, 1.25rem) rotate(-5deg) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes kupu-kepak {
+  0%,
+  100% {
+    transform: rotate(-8deg) scaleX(1);
+  }
+  50% {
+    transform: rotate(-8deg) scaleX(0.3);
+  }
+}
+
 .beranda h1 {
   font-size: 2rem;
   margin-top: 0;
