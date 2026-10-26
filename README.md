@@ -6,7 +6,9 @@ Proyek pribadi, gratis, tanpa iklan. Disusun dengan bantuan AI (Claude). Rencana
 
 ## Menjalankan secara lokal
 
-Butuh Node.js 20 atau lebih baru.
+Butuh Node.js 22.23.4 atau lebih baru. Di Windows, pasang juga
+[Microsoft Visual C++ Redistributable (x64)](https://aka.ms/vs/17/release/vc_redist.x64.exe),
+karena pemroses Markdown Astro memakai modul native.
 
 ```sh
 npm install
@@ -24,12 +26,21 @@ npm run build    # hasil statis di folder dist/
    judul: "Judul Kisah"
    bab: "Bab 3: Merawat Kehidupan"
    ilustrasi: "/ilustrasi/nama-kisah.svg"
+   ilustrasiAlt: "Gambar tinta: deskripsi singkat isi ilustrasi."
    urutan: 2
    ---
    ```
 
 3. Tulis kisahnya, lalu sisipkan baris `<!-- renungan -->` sebelum bagian renungan.
 4. Simpan ilustrasi SVG di `public/ilustrasi/`.
+
+Setiap kisah harus punya `urutan` yang berbeda; build akan berhenti dengan pesan jelas bila ada yang sama.
+
+## Catatan keamanan
+
+- Header keamanan (termasuk Content-Security-Policy) diatur di `vercel.json`.
+  CSP melarang skrip dan CSS inline, jadi skrip baru ditaruh di `public/js/`.
+- Markdown mengizinkan HTML mentah. Periksa kiriman kisah dari orang lain sebelum digabung.
 
 ## Lisensi
 

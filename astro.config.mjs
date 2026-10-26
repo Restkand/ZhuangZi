@@ -8,6 +8,11 @@ const site = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 export default defineConfig({
   site,
+  // CSS selalu jadi file terpisah, tidak disisipkan ke HTML, agar cocok dengan
+  // Content-Security-Policy "style-src 'self'" di vercel.json.
+  build: {
+    inlineStylesheets: 'never',
+  },
   markdown: {
     rehypePlugins: [rehypeRenungan],
   },

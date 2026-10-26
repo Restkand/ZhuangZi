@@ -15,22 +15,4 @@
   </audio>
 </p>
 
-<script is:inline>
-  (() => {
-    const tombol = document.querySelector('.tombol-musik');
-    const audio = document.querySelector('.audio-musik');
-    if (!tombol || !audio) return;
-
-    const teks = tombol.querySelector('.teks-musik');
-    const perbarui = () => {
-      tombol.setAttribute('aria-pressed', String(!audio.paused));
-      teks.textContent = audio.paused ? 'Putar musik latar' : 'Hentikan musik latar';
-    };
-
-    audio.volume = 0.5;
-    tombol.hidden = false;
-    tombol.addEventListener('click', () => (audio.paused ? audio.play() : audio.pause()));
-    audio.addEventListener('play', perbarui);
-    audio.addEventListener('pause', perbarui);
-  })();
-</script>
+<script is:inline src="/js/musik.js" defer></script>

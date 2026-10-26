@@ -10,6 +10,7 @@ interface Props {
   judul?: string;
   deskripsi?: string;
   gambar?: string;
+  gambarAlt?: string;
   jenis?: 'website' | 'article';
 }
 
@@ -17,6 +18,7 @@ const {
   judul,
   deskripsi = 'Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia yang tenang.',
   gambar = '/og/beranda.png',
+  gambarAlt = 'Gambar tinta seekor kupu-kupu yang sedang terbang, dengan stempel merah kecil.',
   jenis = 'website',
 } = Astro.props;
 const judulHalaman = judul ? `${judul} · Kisah Zhuangzi` : 'Kisah Zhuangzi';
@@ -42,6 +44,7 @@ const alamatGambar = new URL(gambar, Astro.site);
     <meta property="og:image" content={alamatGambar} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={gambarAlt} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="color-scheme" content="light dark" />
@@ -51,13 +54,8 @@ const alamatGambar = new URL(gambar, Astro.site);
     <link rel="alternate" type="application/rss+xml" title="Kisah Zhuangzi" href="/rss.xml" />
     <link rel="preload" href={lora400} as="font" type="font/woff2" crossorigin />
 
-    <!-- Terapkan pilihan tema sebelum halaman tampil, agar tidak berkedip. -->
-    <script is:inline>
-      try {
-        const tema = localStorage.getItem('tema');
-        if (tema) document.documentElement.dataset.theme = tema;
-      } catch {}
-    </script>
+    <!-- Skrip disimpan sebagai file terpisah agar Content-Security-Policy bisa ketat (lihat vercel.json). -->
+    <script is:inline src="/js/tema-awal.js"></script>
   </head>
   <body>
     <header class="kepala">
@@ -85,28 +83,6 @@ const alamatGambar = new URL(gambar, Astro.site);
       <p><a href="/rss.xml">Ikuti lewat RSS</a></p>
     </footer>
 
-    <!-- Tombol mode malam. Tanpa JavaScript, tombol tetap tersembunyi dan tema mengikuti perangkat. -->
-    <script is:inline>
-      (() => {
-        const tombol = document.querySelector('.tombol-tema');
-        const akar = document.documentElement;
-        const gelap = () =>
-          akar.dataset.theme
-            ? akar.dataset.theme === 'dark'
-            : matchMedia('(prefers-color-scheme: dark)').matches;
-        const perbarui = () =>
-          tombol.setAttribute('aria-label', gelap() ? 'Ganti ke mode terang' : 'Ganti ke mode malam');
-
-        tombol.hidden = false;
-        perbarui();
-        tombol.addEventListener('click', () => {
-          akar.dataset.theme = gelap() ? 'light' : 'dark';
-          try {
-            localStorage.setItem('tema', akar.dataset.theme);
-          } catch {}
-          perbarui();
-        });
-      })();
-    </script>
+    <script is:inline src="/js/tema.js" defer></script>
   </body>
 </html>

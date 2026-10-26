@@ -1,10 +1,11 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import Kisah from '../../layouts/Kisah.astro';
+import { daftarKisah } from '../../lib/kisah';
 import { ringkasan } from '../../lib/ringkasan';
 
 export async function getStaticPaths() {
-  const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
+  const daftar = await daftarKisah();
   return daftar.map((kisah, i) => ({
     params: { id: kisah.id },
     props: { kisah, berikutnya: daftar[i + 1] },
@@ -23,6 +24,7 @@ const menitBaca = Math.max(1, Math.ceil(jumlahKata / 200));
   judul={kisah.data.judul}
   bab={kisah.data.bab}
   ilustrasi={kisah.data.ilustrasi}
+  ilustrasiAlt={kisah.data.ilustrasiAlt}
   menitBaca={menitBaca}
   deskripsi={ringkasan(kisah.body ?? '')}
   gambar={`/og/${kisah.id}.png`}

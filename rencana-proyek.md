@@ -128,6 +128,7 @@ Frontmatter setiap kisah:
 judul: "Juru Masak Ding dan Pisau yang Tak Pernah Tumpul"
 bab: "Bab 3: Merawat Kehidupan"
 ilustrasi: "/ilustrasi/juru-masak-ding.svg"
+ilustrasiAlt: "Gambar tinta: pisau dapur lebar di atas talenan kayu bundar"
 urutan: 1
 ---
 ```

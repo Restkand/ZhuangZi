@@ -6,18 +6,20 @@ interface Props {
   judul: string;
   bab: string;
   ilustrasi: string;
+  ilustrasiAlt: string;
   menitBaca: number;
   deskripsi: string;
   gambar: string;
   berikutnya?: { judul: string; href: string };
 }
 
-const { judul, bab, ilustrasi, menitBaca, deskripsi, gambar, berikutnya } = Astro.props;
+const { judul, bab, ilustrasi, ilustrasiAlt, menitBaca, deskripsi, gambar, berikutnya } =
+  Astro.props;
 ---
 
-<Dasar judul={judul} deskripsi={deskripsi} gambar={gambar} jenis="article">
+<Dasar judul={judul} deskripsi={deskripsi} gambar={gambar} gambarAlt={ilustrasiAlt} jenis="article">
   <article class="kisah">
-    <img class="ilustrasi" src={ilustrasi} alt="" width="550" height="350" />
+    <img class="ilustrasi" src={ilustrasi} alt={ilustrasiAlt} width="550" height="350" />
     <h1>{judul}</h1>
     <p class="sumber">
       <em>Dari kitab Zhuangzi, {bab}</em>

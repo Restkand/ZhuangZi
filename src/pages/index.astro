@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import Dasar from '../layouts/Dasar.astro';
 import Kupu from '../components/Kupu.astro';
+import { daftarKisah } from '../lib/kisah';
 
-const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
+const daftar = await daftarKisah();
 
 // Kelompokkan menurut pembagian kitab: Bab Dalam, Bab Luar, Bab Campuran.
 const kelompok = [

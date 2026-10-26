@@ -7,6 +7,8 @@ const kisah = defineCollection({
     judul: z.string(),
     bab: z.string(),
     ilustrasi: z.string(),
+    // Deskripsi singkat ilustrasi untuk pembaca layar dan pratinjau tautan.
+    ilustrasiAlt: z.string(),
     urutan: z.number(),
   }),
 });
