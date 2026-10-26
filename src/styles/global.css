@@ -196,40 +196,70 @@ p {
   margin: 3.5rem 0 0.5rem -0.5rem;
 }
 
-/* Kupu-kupu terbang masuk ke tempatnya saat beranda pertama kali dibuka dalam satu
-   kunjungan (penanda data-kupu dipasang oleh public/js/tema-awal.js). Halaman tidak
-   ditahan: teks sudah bisa dibaca sejak awal. Mati bila pembaca memilih kurangi gerakan. */
+/* Pembuka kupu-kupu, hanya pada kunjungan pertama ke beranda.
+   data-kupu="datang" (dari tema-awal.js): halaman dan kupu-kupu disembunyikan sebentar
+   sampai kupu-datang.js menghitung jarak; bila skrip gagal, semuanya muncul sendiri
+   setelah 3,5 detik. data-kupu="terbang": kupu-kupu muncul kecil di tengah layar,
+   membesar, melayang, lalu terbang ke tempatnya; halaman muncul perlahan. */
 @media (prefers-reduced-motion: no-preference) {
-  [data-kupu='datang'] .kupu-beranda {
-    animation: kupu-datang 2.4s cubic-bezier(0.25, 0.6, 0.3, 1) backwards;
+  [data-kupu='datang'] .kupu-beranda,
+  [data-kupu='datang'] .kepala,
+  [data-kupu='datang'] .kaki,
+  [data-kupu='datang'] .beranda > :not(.kupu-beranda) {
+    opacity: 0;
+    animation: muncul 0.6s ease 3.5s forwards;
+  }
+
+  [data-kupu='terbang'] .kupu-beranda {
+    position: relative;
+    z-index: 10;
+    animation: kupu-pembuka 3.4s cubic-bezier(0.45, 0, 0.2, 1) both;
   }
 
   /* Sayap mengepak: kelompok gambar dipersempit dan dilebarkan di sekitar badan.
      rotate(-8deg) mengulang kemiringan bawaan kupu-kupu (lihat src/lib/kupu.ts). */
-  [data-kupu='datang'] .kupu-beranda > g {
+  [data-kupu='terbang'] .kupu-beranda > g {
     transform-box: view-box;
     transform-origin: 60px 40px;
-    animation: kupu-kepak 0.32s ease-in-out 7;
+    animation: kupu-kepak 0.42s ease-in-out 8;
+  }
+
+  [data-kupu='terbang'] .kepala,
+  [data-kupu='terbang'] .kaki,
+  [data-kupu='terbang'] .beranda > :not(.kupu-beranda) {
+    animation: muncul 1s ease 2.3s both;
   }
 }
 
-@keyframes kupu-datang {
+/* --kupu-dx/--kupu-dy: jarak dari tempat kupu-kupu ke tengah layar (dihitung kupu-datang.js). */
+@keyframes kupu-pembuka {
   0% {
     opacity: 0;
-    transform: translate(-7rem, 4rem) rotate(-18deg) scale(0.7);
+    transform: translate(var(--kupu-dx), var(--kupu-dy)) scale(0.15);
   }
-  20% {
+  25% {
     opacity: 1;
+    transform: translate(var(--kupu-dx), var(--kupu-dy)) scale(2.4);
   }
   45% {
-    transform: translate(-3.5rem, 0.5rem) rotate(6deg) scale(0.85);
+    transform: translate(var(--kupu-dx), calc(var(--kupu-dy) - 1rem)) scale(2.4) rotate(-3deg);
   }
   75% {
-    transform: translate(-1rem, 1.25rem) rotate(-5deg) scale(0.95);
+    transform: translate(calc(var(--kupu-dx) * 0.35), calc(var(--kupu-dy) * 0.25 - 1.5rem))
+      scale(1.5) rotate(4deg);
   }
   100% {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes muncul {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
