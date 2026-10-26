@@ -181,10 +181,7 @@ Website ini gratis, tanpa iklan, dan tidak mencari keuntungan.
 
 ## 10. Langkah berikutnya
 
-- [ ] Simpan semua file dari percakapan ini ke Notes
-- [ ] Buat Project di Claude (mode biasa)
 - [x] Siapkan proyek Astro di laptop atau Codespaces
-- [ ] Hubungkan ke GitHub dan Vercel
 - [x] Pasang kisah Juru Masak Ding sebagai kisah pertama
 - [ ] Tentukan nama website
 
