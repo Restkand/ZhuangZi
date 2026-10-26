@@ -196,7 +196,7 @@ p {
   margin: 3.5rem 0 0.5rem -0.5rem;
 }
 
-/* Pembuka kupu-kupu, hanya pada kunjungan pertama ke beranda.
+/* Pembuka kupu-kupu, setiap kali beranda dibuka (tidak saat kembali dari kisah di situs).
    data-kupu="datang" (dari tema-awal.js): halaman dan kupu-kupu disembunyikan sebentar
    sampai kupu-datang.js menghitung jarak; bila skrip gagal, semuanya muncul sendiri
    setelah 3,5 detik. data-kupu="terbang": kupu-kupu muncul kecil di tengah layar,
