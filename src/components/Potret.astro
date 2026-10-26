@@ -1,29 +1,38 @@
 ---
 // Potret Zhuangzi karya yang diatribusikan kepada Hua Zuli (abad ke-14, Dinasti Yuan).
-// Domain publik, dari Wikimedia Commons; file asli dikompres ke WebP di public/gambar/.
+// Domain publik, dari Wikimedia Commons; dikompres ke WebP di public/gambar/.
+// "utuh": lukisan lengkap dengan stempel pelukis dan keterangan (halaman Tentang).
+// "potong": kertas kosong di kiri dipotong agar sosoknya mengisi bingkai (beranda).
 interface Props {
-  // "besar" dengan keterangan untuk halaman Tentang, "kecil" tanpa keterangan untuk beranda.
-  ukuran?: 'besar' | 'kecil';
+  versi?: 'utuh' | 'potong';
 }
 
-const { ukuran = 'besar' } = Astro.props;
+const { versi = 'utuh' } = Astro.props;
 const alt =
   'Lukisan tinta seorang lelaki tua berjanggut dalam jubah putih panjang berlapis bulu bertotol, berdiri dengan tangan tersembunyi di lengan jubah.';
+
+const gambar =
+  versi === 'utuh'
+    ? {
+        src: '/gambar/zhuangzi-720.webp',
+        srcset: '/gambar/zhuangzi-360.webp 360w, /gambar/zhuangzi-720.webp 720w',
+        sizes: '(min-width: 600px) 18rem, 70vw',
+        width: 720,
+        height: 1036,
+      }
+    : {
+        src: '/gambar/zhuangzi-potong-800.webp',
+        srcset: '/gambar/zhuangzi-potong-400.webp 400w, /gambar/zhuangzi-potong-800.webp 800w',
+        sizes: '(min-width: 600px) 12rem, 60vw',
+        width: 800,
+        height: 1519,
+      };
 ---
 
-<figure class:list={['potret', `potret-${ukuran}`]}>
-  <img
-    src="/gambar/zhuangzi-720.webp"
-    srcset="/gambar/zhuangzi-360.webp 360w, /gambar/zhuangzi-720.webp 720w"
-    sizes={ukuran === 'besar' ? '(min-width: 600px) 18rem, 70vw' : '6.5rem'}
-    width="720"
-    height="1036"
-    alt={alt}
-    loading="lazy"
-    decoding="async"
-  />
+<figure class:list={['potret', `potret-${versi}`]}>
+  <img {...gambar} alt={alt} loading="lazy" decoding="async" />
   {
-    ukuran === 'besar' && (
+    versi === 'utuh' && (
       <figcaption>
         Zhuangzi, dalam bayangan pelukis yang diatribusikan sebagai Hua Zuli (abad ke-14). Tak ada
         yang tahu rupa aslinya. Domain publik, via{' '}
