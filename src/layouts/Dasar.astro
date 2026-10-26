@@ -7,23 +7,33 @@ import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import MusikLatar from '../components/MusikLatar.astro';
 import Stempel from '../components/Stempel.astro';
+import { DESKRIPSI, NAMA, jsonLd } from '../lib/situs';
 
 interface Props {
   judul?: string;
+  // Kata kunci tambahan di judul tab, mis. "Kisah Zhuangzi" pada halaman kisah.
+  labelJudul?: string;
   deskripsi?: string;
   gambar?: string;
   gambarAlt?: string;
   jenis?: 'website' | 'article';
+  dataTerstruktur?: Record<string, unknown>;
 }
 
 const {
   judul,
-  deskripsi = 'Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia yang tenang.',
+  labelJudul,
+  deskripsi = DESKRIPSI,
   gambar = '/og/beranda.png',
   gambarAlt = 'Gambar tinta seekor kupu-kupu yang sedang terbang, dengan stempel merah kecil.',
   jenis = 'website',
+  dataTerstruktur,
 } = Astro.props;
-const judulHalaman = judul ? `${judul} · Kisah Zhuangzi` : 'Kisah Zhuangzi';
+
+// Beranda: merek dulu, lalu kata kunci. Halaman lain: judulnya dulu, merek di akhir.
+const judulHalaman = judul
+  ? [judul, labelJudul, NAMA].filter(Boolean).join(' · ')
+  : `${NAMA} · Kisah-kisah Zhuangzi dalam Bahasa Indonesia`;
 const alamat = new URL(Astro.url.pathname, Astro.site);
 const alamatGambar = new URL(gambar, Astro.site);
 ---
@@ -38,9 +48,9 @@ const alamatGambar = new URL(gambar, Astro.site);
     <link rel="canonical" href={alamat} />
 
     <meta property="og:type" content={jenis} />
-    <meta property="og:site_name" content="Kisah Zhuangzi" />
+    <meta property="og:site_name" content={NAMA} />
     <meta property="og:locale" content="id_ID" />
-    <meta property="og:title" content={judul ?? 'Kisah Zhuangzi'} />
+    <meta property="og:title" content={judul ?? NAMA} />
     <meta property="og:description" content={deskripsi} />
     <meta property="og:url" content={alamat} />
     <meta property="og:image" content={alamatGambar} />
@@ -53,8 +63,15 @@ const alamatGambar = new URL(gambar, Astro.site);
     <meta name="theme-color" content="#f6f1e7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1f1c18" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="alternate" type="application/rss+xml" title="Kisah Zhuangzi" href="/rss.xml" />
+    <link rel="alternate" type="application/rss+xml" title={NAMA} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preload" href={lora400} as="font" type="font/woff2" crossorigin />
+    <!-- Data untuk mesin pencari, bukan skrip yang dijalankan; tidak terkena CSP script-src. -->
+    {
+      dataTerstruktur && (
+        <script is:inline type="application/ld+json" set:html={jsonLd(dataTerstruktur)} />
+      )
+    }
 
     <!-- Skrip disimpan sebagai file terpisah agar Content-Security-Policy bisa ketat (lihat vercel.json). -->
     <script is:inline src="/js/tema-awal.js"></script>
@@ -64,7 +81,7 @@ const alamatGambar = new URL(gambar, Astro.site);
   <body>
     <!-- Header (beserta musik dan tombol tema) dipertahankan saat pindah halaman. -->
     <header class="kepala" transition:persist="kepala">
-      <a href="/" class="nama-situs">Kisah Zhuangzi</a>
+      <a href="/" class="nama-situs">{NAMA}</a>
       <nav>
         <a href="/tentang/">Tentang</a>
         <MusikLatar />

@@ -2,8 +2,18 @@
 import Dasar from '../layouts/Dasar.astro';
 import Kupu from '../components/Kupu.astro';
 import { daftarKisah } from '../lib/kisah';
+import { DESKRIPSI, NAMA, SLOGAN } from '../lib/situs';
 
 const daftar = await daftarKisah();
+
+const dataSitus = {
+  '@type': 'WebSite',
+  name: NAMA,
+  alternateName: 'Kisah Zhuangzi',
+  description: DESKRIPSI,
+  url: new URL('/', Astro.site).href,
+  inLanguage: 'id',
+};
 
 // Kelompokkan menurut pembagian kitab: Bab Dalam, Bab Luar, Bab Campuran.
 const kelompok = [
@@ -34,18 +44,26 @@ const kelompok = [
 }));
 ---
 
-<Dasar>
+<Dasar dataTerstruktur={dataSitus}>
   <section class="beranda">
     <Kupu class="kupu-beranda" />
-    <h1>Kisah Zhuangzi</h1>
+    <h1>{NAMA}</h1>
+    <p class="slogan">{SLOGAN}</p>
     <p class="pengantar">
       Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia. Untuk dibaca
       pelan-pelan, satu kisah setiap kali.
     </p>
     <p class="pengantar">
       Zhuangzi adalah seorang pemikir Tiongkok yang hidup sekitar abad ke-4 sebelum Masehi. Ia jarang
-      menasihati. Ia lebih suka bercerita: tentang juru masak, kupu-kupu, pohon yang dianggap tak
-      berguna, dan ikan yang berenang di sungai.
+      menasihati. Ia lebih suka bercerita: tentang juru masak, kupu-kupu, dan ikan yang berenang di
+      sungai.
+    </p>
+    <p class="pengantar">
+      Nama tempat ini diambil dari salah satu ceritanya. Seorang sahabat mengeluh tentang pohon besar
+      yang batangnya berbonggol dan dahannya bengkok, sampai tak ada tukang kayu yang mau
+      meliriknya. Zhuangzi menjawab: tanam saja ia di padang
+      yang lapang, lalu berbaringlah dengan tenang di bawahnya. Karena tak berguna, tak ada kapak yang
+      akan menebangnya.
     </p>
 
     {

@@ -1,4 +1,6 @@
-# Rencana Proyek: Website Kisah Zhuangzi
+# Rencana Proyek: Pohon Tak Berguna
+
+Website kisah Zhuangzi · https://pohontakberguna.com · *Tempat berteduh bersama kisah-kisah Zhuangzi*
 
 ## 1. Tentang proyek
 
@@ -134,7 +136,9 @@ urutan: 1
 ---
 ```
 
-Hosting: Vercel (paket Hobby, gratis), terhubung ke repositori GitHub. Setiap perubahan otomatis tayang.
+Hosting: Vercel (paket Hobby, gratis), terhubung ke repositori GitHub. Setiap perubahan otomatis tayang. Domain: pohontakberguna.com (diatur di `site`, astro.config.mjs).
+
+SEO: sitemap otomatis (@astrojs/sitemap), robots.txt, data terstruktur JSON-LD (WebSite dan Article), judul halaman berpola "Judul Kisah · Kisah Zhuangzi · Pohon Tak Berguna".
 
 - Astro statis dikenali otomatis, tidak perlu adapter.
 - Jangan aktifkan Vercel Analytics atau Speed Insights. Keduanya menghitung pengunjung dan bertentangan dengan prinsip "tanpa jumlah pembaca".
@@ -183,7 +187,7 @@ Website ini gratis, tanpa iklan, dan tidak mencari keuntungan.
 
 - [x] Siapkan proyek Astro di laptop atau Codespaces
 - [x] Pasang kisah Juru Masak Ding sebagai kisah pertama
-- [ ] Tentukan nama website
+- [x] Tentukan nama website: Pohon Tak Berguna (domain pohontakberguna.com)
 
 ---
 

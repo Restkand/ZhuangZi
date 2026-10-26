@@ -3,12 +3,13 @@ import rss from '@astrojs/rss';
 import type { APIRoute } from 'astro';
 import { daftarKisah } from '../lib/kisah';
 import { ringkasan } from '../lib/ringkasan';
+import { DESKRIPSI, NAMA } from '../lib/situs';
 
 export const GET: APIRoute = async (context) => {
   const daftar = await daftarKisah();
   return rss({
-    title: 'Kisah Zhuangzi',
-    description: 'Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia yang tenang.',
+    title: NAMA,
+    description: DESKRIPSI,
     site: context.site!,
     items: daftar.map((kisah) => ({
       title: kisah.data.judul,

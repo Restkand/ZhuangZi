@@ -1,6 +1,10 @@
-# Kisah Zhuangzi
+# Pohon Tak Berguna
+
+*Tempat berteduh bersama kisah-kisah Zhuangzi* · https://pohontakberguna.com
 
 Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia yang tenang dan mudah dipahami.
+Nama situs diambil dari kisah pohon yang tak berguna di Bab 1: karena tak berguna, ia tak ditebang.
+Nama, slogan, dan deskripsi situs diatur di `src/lib/situs.ts`.
 
 Proyek pribadi, gratis, tanpa iklan. Disusun dengan bantuan AI (Claude). Rencana lengkap ada di [rencana-proyek.md](rencana-proyek.md).
 
