@@ -35,14 +35,17 @@ npm run build    # hasil statis di folder dist/
    teksAsli: "Satu baris teks asli Tionghoa dari kisahnya (opsional)."
    teksAsliArti: "Arti baris teks asli itu (opsional)."
    tentang: "Dua atau tiga kalimat untuk kotak 'Tentang kisah ini' (opsional)."
-   urutan: 2
+   urutan: 1
    ---
    ```
 
 3. Tulis kisahnya, lalu sisipkan baris `<!-- renungan -->` sebelum bagian renungan.
 4. Simpan ilustrasi SVG di `public/ilustrasi/`.
 
-Setiap kisah harus punya `urutan` yang berbeda; build akan berhenti dengan pesan jelas bila ada yang sama.
+Kisah ditampilkan mengikuti urutan kitab: menurut nomor bab (dari kolom `bab`), lalu `urutan`
+untuk kisah-kisah di dalam bab yang sama (mulai dari 1). Urutan ini juga menentukan tautan
+"Kisah berikutnya". Build akan berhenti dengan pesan jelas bila dua kisah dalam bab yang sama
+memakai `urutan` yang sama.
 
 ## Catatan keamanan
 

@@ -18,6 +18,7 @@ const kisah = defineCollection({
     teksAsliArti: z.string().optional(),
     // Opsional: 2–3 kalimat "Tentang kisah ini", ditampilkan setelah catatan sumber.
     tentang: z.string().optional(),
+    // Urutan di dalam bab yang sama, mulai dari 1. Antarbab diurutkan menurut nomor bab.
     urutan: z.number(),
   }),
 });
