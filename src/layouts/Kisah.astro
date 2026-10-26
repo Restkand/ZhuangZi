@@ -10,11 +10,21 @@ interface Props {
   menitBaca: number;
   deskripsi: string;
   gambar: string;
+  kartuStory: string;
   berikutnya?: { judul: string; href: string };
 }
 
-const { judul, bab, ilustrasi, ilustrasiAlt, menitBaca, deskripsi, gambar, berikutnya } =
-  Astro.props;
+const {
+  judul,
+  bab,
+  ilustrasi,
+  ilustrasiAlt,
+  menitBaca,
+  deskripsi,
+  gambar,
+  kartuStory,
+  berikutnya,
+} = Astro.props;
 
 // Memberi tahu mesin pencari bahwa ini artikel berbahasa Indonesia yang diceritakan ulang dari kitab Zhuangzi.
 const dataKisah = {
@@ -57,6 +67,11 @@ const dataKisah = {
     <p class="catatan">
       Diceritakan ulang dari teks asli Zhuangzi dan terjemahan James Legge (1891), keduanya domain
       publik, dengan bantuan AI. Bukan terjemahan akademis.
+    </p>
+
+    <!-- Instagram tidak menampilkan pratinjau tautan di Story; kartu ini diunggah lalu diberi stiker tautan. -->
+    <p class="bagikan">
+      <a href={kartuStory} download>Unduh kartu untuk Story Instagram</a>
     </p>
   </article>
 

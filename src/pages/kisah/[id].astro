@@ -28,6 +28,7 @@ const menitBaca = Math.max(1, Math.ceil(jumlahKata / 200));
   menitBaca={menitBaca}
   deskripsi={ringkasan(kisah.body ?? '')}
   gambar={`/og/${kisah.id}.png`}
+  kartuStory={`/bagikan/${kisah.id}.png`}
   berikutnya={berikutnya && { judul: berikutnya.data.judul, href: `/kisah/${berikutnya.id}/` }}
 >
   <Content />
