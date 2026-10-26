@@ -132,6 +132,7 @@ judul: "Juru Masak Ding dan Pisau yang Tak Pernah Tumpul"
 bab: "Bab 3: Merawat Kehidupan"
 ilustrasi: "/ilustrasi/juru-masak-ding.svg"
 ilustrasiAlt: "Gambar tinta: pisau dapur lebar di atas talenan kayu bundar"
+kutipan: "Di antara sendi selalu ada ruang. Mata pisau yang tipis bisa bergerak dengan bebas di sana."
 urutan: 1
 ---
 ```
@@ -241,6 +242,7 @@ ALUR KERJA SETIAP SESI
 3. Setelah saya memberi masukan, perbaiki hanya bagian yang saya minta, kecuali saya meminta versi lengkap.
 4. Setelah teks disetujui, buat ilustrasinya.
 5. Di akhir sesi, beri satu kalimat ringkas status kisah ini untuk saya catat di daftar kisah.
+6. Usulkan satu kutipan untuk kartu Story Instagram: satu atau dua kalimat (paling banyak sekitar 100 huruf) yang diambil atau disarikan dari kisahnya, membuat orang penasaran, dan setia pada isi aslinya.
 
 Urutan pengerjaan: Bab Dalam (bab 1 sampai 7) terlebih dahulu, lalu kisah-kisah terkenal dari Bab Luar seperti bab 17, 19, dan 20, lalu sisanya.
 ```

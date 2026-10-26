@@ -3,6 +3,7 @@ judul: "Juru Masak Ding dan Pisau yang Tak Pernah Tumpul"
 bab: "Bab 3: Merawat Kehidupan"
 ilustrasi: "/ilustrasi/juru-masak-ding.svg"
 ilustrasiAlt: "Gambar tinta: pisau dapur lebar di atas talenan kayu bundar, dengan beberapa irisan kecil di tepinya."
+kutipan: "Di antara sendi selalu ada ruang. Mata pisau yang tipis bisa bergerak dengan bebas di sana."
 urutan: 1
 ---
 

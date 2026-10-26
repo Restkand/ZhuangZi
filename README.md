@@ -31,6 +31,7 @@ npm run build    # hasil statis di folder dist/
    bab: "Bab 3: Merawat Kehidupan"
    ilustrasi: "/ilustrasi/nama-kisah.svg"
    ilustrasiAlt: "Gambar tinta: deskripsi singkat isi ilustrasi."
+   kutipan: "Satu atau dua kalimat dari kisah untuk kartu Story Instagram (opsional)."
    urutan: 2
    ---
    ```
