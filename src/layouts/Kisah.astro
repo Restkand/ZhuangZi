@@ -1,5 +1,6 @@
 ---
 import Dasar from './Dasar.astro';
+import { NAMA, PENULIS } from '../lib/situs';
 
 interface Props {
   judul: string;
@@ -14,9 +15,33 @@ interface Props {
 
 const { judul, bab, ilustrasi, ilustrasiAlt, menitBaca, deskripsi, gambar, berikutnya } =
   Astro.props;
+
+// Memberi tahu mesin pencari bahwa ini artikel berbahasa Indonesia yang diceritakan ulang dari kitab Zhuangzi.
+const dataKisah = {
+  '@type': 'Article',
+  headline: judul,
+  description: deskripsi,
+  image: new URL(gambar, Astro.site).href,
+  inLanguage: 'id',
+  author: { '@type': 'Person', name: PENULIS },
+  isPartOf: { '@type': 'WebSite', name: NAMA, url: new URL('/', Astro.site).href },
+  isBasedOn: {
+    '@type': 'Book',
+    name: `Zhuangzi, ${bab}`,
+    author: { '@type': 'Person', name: 'Zhuangzi' },
+  },
+};
 ---
 
-<Dasar judul={judul} deskripsi={deskripsi} gambar={gambar} gambarAlt={ilustrasiAlt} jenis="article">
+<Dasar
+  judul={judul}
+  labelJudul="Kisah Zhuangzi"
+  deskripsi={deskripsi}
+  gambar={gambar}
+  gambarAlt={ilustrasiAlt}
+  jenis="article"
+  dataTerstruktur={dataKisah}
+>
   <article class="kisah">
     <img class="ilustrasi" src={ilustrasi} alt={ilustrasiAlt} width="550" height="350" />
     <h1>{judul}</h1>
