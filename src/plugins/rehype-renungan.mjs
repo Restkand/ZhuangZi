@@ -18,7 +18,7 @@ export default function rehypeRenungan() {
         type: 'element',
         tagName: 'div',
         properties: { className: ['pemisah'], ariaHidden: 'true' },
-        children: [{ type: 'text', value: '· · ·' }],
+        children: [],
       },
       {
         type: 'element',

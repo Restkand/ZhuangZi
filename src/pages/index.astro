@@ -1,12 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
 import Dasar from '../layouts/Dasar.astro';
+import Kupu from '../components/Kupu.astro';
 
 const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
+
+// Kelompokkan menurut pembagian kitab: Bab Dalam, Bab Luar, Bab Campuran.
+const kelompok = [
+  { nama: 'Bab Dalam', dari: 1, sampai: 7 },
+  { nama: 'Bab Luar', dari: 8, sampai: 22 },
+  { nama: 'Bab Campuran', dari: 23, sampai: 33 },
+].map((k) => ({
+  ...k,
+  kisah: daftar.filter((kisah) => {
+    const nomor = Number(kisah.data.bab.match(/Bab (\d+)/)?.[1]);
+    return nomor >= k.dari && nomor <= k.sampai;
+  }),
+}));
 ---
 
 <Dasar>
   <section class="beranda">
+    <Kupu class="kupu-beranda" />
     <h1>Kisah Zhuangzi</h1>
     <p class="pengantar">
       Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia. Untuk dibaca
@@ -14,18 +29,27 @@ const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.d
     </p>
 
     {
-      daftar.length > 0 ? (
-        <ol class="daftar-kisah">
-          {daftar.map((kisah) => (
-            <li>
-              <a href={`/kisah/${kisah.id}/`}>{kisah.data.judul}</a>
-              <span class="bab">{kisah.data.bab}</span>
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <p class="kosong">Kisah pertama sedang ditulis.</p>
-      )
+      daftar.length === 0 && <p class="kosong">Kisah pertama sedang ditulis.</p>
+    }
+
+    {
+      kelompok
+        .filter((k) => k.kisah.length > 0)
+        .map((k) => (
+          <section class="kelompok">
+            <h2>{k.nama}</h2>
+            <ol class="daftar-kisah">
+              {k.kisah.map((kisah) => (
+                <li>
+                  <a href={`/kisah/${kisah.id}/`}>
+                    <span class="bab">{kisah.data.bab}</span>
+                    <span class="judul-kisah">{kisah.data.judul}</span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
     }
   </section>
 </Dasar>

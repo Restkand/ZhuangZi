@@ -18,7 +18,7 @@ const { judul, bab, ilustrasi, menitBaca, berikutnya } = Astro.props;
     <h1>{judul}</h1>
     <p class="sumber">
       <em>Dari kitab Zhuangzi, {bab}</em>
-      <span class="waktu-baca">· sekitar {menitBaca} menit membaca</span>
+      <span class="waktu-baca">sekitar {menitBaca} menit membaca</span>
     </p>
 
     <div class="isi">
@@ -31,11 +31,20 @@ const { judul, bab, ilustrasi, menitBaca, berikutnya } = Astro.props;
     </p>
   </article>
 
-  {
-    berikutnya && (
-      <nav class="berikutnya">
-        <a href={berikutnya.href}>Kisah berikutnya: {berikutnya.judul} →</a>
-      </nav>
-    )
-  }
+  <nav class="berikutnya">
+    {
+      berikutnya ? (
+        <a href={berikutnya.href}>
+          <span class="label">Kisah berikutnya</span>
+          <span class="judul-berikutnya">{berikutnya.judul}</span>
+        </a>
+      ) : (
+        <p>
+          Untuk sementara, ini kisah terakhir. Kisah berikutnya sedang ditulis, pelan-pelan.
+          <br />
+          <a href="/">Kembali ke daftar kisah</a>
+        </p>
+      )
+    }
+  </nav>
 </Dasar>

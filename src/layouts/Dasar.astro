@@ -1,5 +1,9 @@
 ---
+import '@fontsource/lora/latin-400.css';
+import '@fontsource/lora/latin-400-italic.css';
+import '@fontsource/lora/latin-500.css';
 import '../styles/global.css';
+import Stempel from '../components/Stempel.astro';
 
 interface Props {
   judul?: string;
@@ -16,13 +20,10 @@ const judulHalaman = judul ? `${judul} · Kisah Zhuangzi` : 'Kisah Zhuangzi';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia yang tenang." />
     <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f1e7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1f1c18" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{judulHalaman}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
-    />
   </head>
   <body>
     <header class="kepala">
@@ -32,5 +33,13 @@ const judulHalaman = judul ? `${judul} · Kisah Zhuangzi` : 'Kisah Zhuangzi';
     <main>
       <slot />
     </main>
+    <footer class="kaki">
+      <Stempel />
+      <p>
+        Gratis dan tanpa iklan. Teks asli Zhuangzi dan terjemahan Legge adalah domain publik;
+        penceritaan ulang di sini berlisensi
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.id">CC BY-NC-SA 4.0</a>.
+      </p>
+    </footer>
   </body>
 </html>
