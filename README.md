@@ -32,6 +32,9 @@ npm run build    # hasil statis di folder dist/
    ilustrasi: "/ilustrasi/nama-kisah.svg"
    ilustrasiAlt: "Gambar tinta: deskripsi singkat isi ilustrasi."
    kutipan: "Satu atau dua kalimat dari kisah untuk kartu Story Instagram (opsional)."
+   teksAsli: "Satu baris teks asli Tionghoa dari kisahnya (opsional)."
+   teksAsliArti: "Arti baris teks asli itu (opsional)."
+   tentang: "Dua atau tiga kalimat untuk kotak 'Tentang kisah ini' (opsional)."
    urutan: 2
    ---
    ```

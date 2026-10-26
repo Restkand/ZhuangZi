@@ -1,0 +1,23 @@
+---
+// Baris bagikan di akhir kisah. Tanpa skrip pihak ketiga dan tanpa angka: hanya tautan
+// biasa (WhatsApp, kartu Story) dan fitur bawaan peramban (menu bagikan, salin tautan).
+// Tombol yang butuh JavaScript tersembunyi sampai public/js/bagikan.js menyalakannya.
+interface Props {
+  judul: string;
+  kartuStory: string;
+}
+
+const { judul, kartuStory } = Astro.props;
+const alamat = new URL(Astro.url.pathname, Astro.site).href;
+const whatsapp = `https://wa.me/?text=${encodeURIComponent(`${judul}\n${alamat}`)}`;
+---
+
+<p class="bagikan" data-judul={judul} data-alamat={alamat}>
+  <span class="label">Bagikan kisah ini</span>
+  <button class="tombol-bagikan" type="button" hidden>Bagikan…</button>
+  <a href={whatsapp} rel="noopener" target="_blank">WhatsApp</a>
+  <button class="tombol-salin" type="button" hidden>Salin tautan</button>
+  <a href={kartuStory} download>Kartu Story Instagram</a>
+</p>
+
+<script is:inline src="/js/bagikan.js" defer></script>

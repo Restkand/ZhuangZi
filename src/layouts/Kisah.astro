@@ -1,5 +1,6 @@
 ---
 import Dasar from './Dasar.astro';
+import BagikanKisah from '../components/BagikanKisah.astro';
 import { NAMA, PENULIS } from '../lib/situs';
 
 interface Props {
@@ -11,6 +12,9 @@ interface Props {
   deskripsi: string;
   gambar: string;
   kartuStory: string;
+  teksAsli?: string;
+  teksAsliArti?: string;
+  tentang?: string;
   berikutnya?: { judul: string; href: string };
 }
 
@@ -23,6 +27,9 @@ const {
   deskripsi,
   gambar,
   kartuStory,
+  teksAsli,
+  teksAsliArti,
+  tentang,
   berikutnya,
 } = Astro.props;
 
@@ -60,6 +67,17 @@ const dataKisah = {
       <span class="waktu-baca">sekitar {menitBaca} menit membaca</span>
     </p>
 
+    {
+      teksAsli && (
+        <p class="teks-asli">
+          <span class="hanzi" lang="zh-Hant">
+            {teksAsli}
+          </span>
+          {teksAsliArti && <span class="arti">{teksAsliArti}</span>}
+        </p>
+      )
+    }
+
     <div class="isi">
       <slot />
     </div>
@@ -69,10 +87,16 @@ const dataKisah = {
       publik, dengan bantuan AI. Bukan terjemahan akademis.
     </p>
 
-    <!-- Instagram tidak menampilkan pratinjau tautan di Story; kartu ini diunggah lalu diberi stiker tautan. -->
-    <p class="bagikan">
-      <a href={kartuStory} download>Unduh kartu untuk Story Instagram</a>
-    </p>
+    {
+      tentang && (
+        <aside class="tentang-kisah" aria-labelledby="judul-tentang-kisah">
+          <h2 id="judul-tentang-kisah">Tentang kisah ini</h2>
+          <p>{tentang}</p>
+        </aside>
+      )
+    }
+
+    <BagikanKisah judul={judul} kartuStory={kartuStory} />
   </article>
 
   <nav class="berikutnya">

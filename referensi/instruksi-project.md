@@ -41,6 +41,9 @@ bab: "Bab 3: Merawat Kehidupan"
 ilustrasi: "/ilustrasi/<nama-kisah>.svg"
 ilustrasiAlt: "Gambar tinta: deskripsi singkat isi ilustrasi."
 kutipan: "Satu atau dua kalimat untuk kartu Story Instagram."
+teksAsli: "一行原文"
+teksAsliArti: "Arti baris teks asli itu."
+tentang: "Dua atau tiga kalimat tentang kisah ini."
 urutan: 2
 ---
 
@@ -61,6 +64,9 @@ Keterangan kolom:
 - bab: nomor dan nama bab sesuai pembagian di ctext.org.
 - ilustrasiAlt: satu kalimat yang menggambarkan isi ilustrasi bagi pembaca yang tidak bisa melihat gambar.
 - kutipan: satu atau dua kalimat (paling banyak sekitar 100 huruf) yang diambil atau disarikan dari kisahnya, membuat orang penasaran, dan setia pada isi aslinya. Tanpa tanda kutip di dalamnya.
+- teksAsli: satu baris pendek teks asli Tionghoa dari kisah ini, disalin persis dari ctext.org (aksara tradisional), biasanya kalimat pembukanya. Jangan mengarang atau menyusun sendiri; bila ragu, kosongkan kolom ini dan katakan.
+- teksAsliArti: arti baris teks asli itu dalam satu kalimat bahasa Indonesia.
+- tentang: dua atau tiga kalimat fakta ringan tentang kisah ini, misalnya seberapa terkenal kisahnya, ungkapan Tionghoa yang lahir darinya, atau letaknya dalam kitab. Hanya fakta yang pasti; bila ragu, kosongkan dan katakan.
 - urutan: tanyakan kepada saya nomor urut berikutnya bila belum jelas.
 - Baris <!-- renungan --> wajib ada tepat sebelum bagian renungan.
 
