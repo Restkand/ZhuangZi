@@ -1,23 +1,22 @@
 // Dijalankan di <head> sebelum halaman tampil.
-// 1. Terapkan pilihan tema agar tidak berkedip.
-// 2. Saat beranda pertama kali dibuka dalam satu kunjungan, tandai agar kupu-kupu
-//    terbang masuk (animasinya di global.css). Kunjungan berikutnya: kupu-kupu sudah hinggap.
-// Router Astro mengganti atribut <html> setiap pindah halaman, jadi keduanya dipasang
-// lagi setiap kali halaman baru masuk.
-const siapkanHalaman = () => {
-  const akar = document.documentElement;
+// 1. Terapkan pilihan tema agar tidak berkedip. Router Astro mengganti atribut <html>
+//    setiap pindah halaman, jadi tema dipasang lagi setiap kali halaman baru masuk.
+// 2. Saat beranda dibuka untuk pertama kali di peramban ini, tandai agar pembuka
+//    kupu-kupu berjalan (lihat public/js/kupu-datang.js dan global.css).
+const terapkanTema = () => {
   try {
     const tema = localStorage.getItem('tema');
-    if (tema === 'light' || tema === 'dark') akar.dataset.theme = tema;
-  } catch {}
-
-  try {
-    if (location.pathname === '/' && !sessionStorage.getItem('kupuDatang')) {
-      akar.dataset.kupu = 'datang';
-      sessionStorage.setItem('kupuDatang', '1');
-    }
+    if (tema === 'light' || tema === 'dark') document.documentElement.dataset.theme = tema;
   } catch {}
 };
 
-siapkanHalaman();
-document.addEventListener('astro:after-swap', siapkanHalaman);
+terapkanTema();
+document.addEventListener('astro:after-swap', terapkanTema);
+
+try {
+  const kurangiGerakan = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (location.pathname === '/' && !kurangiGerakan && !localStorage.getItem('kupuSudahDatang')) {
+    document.documentElement.dataset.kupu = 'datang';
+    localStorage.setItem('kupuSudahDatang', '1');
+  }
+} catch {}
