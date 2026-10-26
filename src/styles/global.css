@@ -46,22 +46,6 @@
   color-scheme: light;
 }
 
-/* Perpindahan halaman memudar pelan, tanpa JavaScript. */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.35s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  @view-transition {
-    navigation: none;
-  }
-}
-
 *,
 *::before,
 *::after {
@@ -135,12 +119,13 @@ main,
   gap: 1rem;
 }
 
-.tombol-tema {
+.tombol-tema,
+.tombol-musik {
   display: grid;
   place-items: center;
   width: 2rem;
   height: 2rem;
-  margin: -0.5rem -0.5rem -0.5rem 0;
+  margin: -0.5rem;
   padding: 0;
   border: 0;
   background: none;
@@ -148,17 +133,37 @@ main,
   cursor: pointer;
 }
 
-.tombol-tema[hidden] {
+.tombol-tema[hidden],
+.tombol-musik[hidden] {
   display: none;
 }
 
-.tombol-tema svg {
+.tombol-tema svg,
+.tombol-musik svg {
   width: 1rem;
   height: 1rem;
 }
 
-.tombol-tema:hover {
+.tombol-tema:hover,
+.tombol-musik:hover {
   color: var(--tinta-pekat);
+}
+
+/* Saat musik berbunyi, ikonnya berwarna stempel dan bernapas pelan. */
+.tombol-musik[aria-pressed='true'] {
+  color: var(--aksen);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tombol-musik[aria-pressed='true'] svg {
+    animation: napas 4s ease-in-out infinite;
+  }
+}
+
+@keyframes napas {
+  50% {
+    opacity: 0.45;
+  }
 }
 
 .nama-situs {
@@ -282,36 +287,7 @@ p {
 .sumber {
   font-size: 0.9rem;
   color: var(--tinta-lembut);
-  margin-bottom: 0.75rem;
-}
-
-.musik {
   margin-bottom: 2.5rem;
-}
-
-.tombol-musik {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 0.3em 0.9em;
-  border: 1px solid var(--garis);
-  border-radius: 999px;
-  background: none;
-  font: inherit;
-  font-size: 0.8rem;
-  color: var(--tinta-lembut);
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.tombol-musik[hidden] {
-  display: none;
-}
-
-.tombol-musik:hover,
-.tombol-musik[aria-pressed='true'] {
-  border-color: var(--abu-2);
-  color: var(--tinta-pekat);
 }
 
 .waktu-baca {
@@ -467,8 +443,7 @@ p {
 
   .kepala,
   .kaki,
-  .berikutnya,
-  .musik {
+  .berikutnya {
     display: none;
   }
 

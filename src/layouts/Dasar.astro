@@ -4,6 +4,8 @@ import '@fontsource/lora/latin-400-italic.css';
 import '@fontsource/lora/latin-500.css';
 import lora400 from '@fontsource/lora/files/lora-latin-400-normal.woff2?url';
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import MusikLatar from '../components/MusikLatar.astro';
 import Stempel from '../components/Stempel.astro';
 
 interface Props {
@@ -56,18 +58,23 @@ const alamatGambar = new URL(gambar, Astro.site);
 
     <!-- Skrip disimpan sebagai file terpisah agar Content-Security-Policy bisa ketat (lihat vercel.json). -->
     <script is:inline src="/js/tema-awal.js"></script>
+    <!-- Navigasi mulus antarhalaman, agar musik latar tidak terputus. Tanpa JS, tautan biasa tetap bekerja. -->
+    <ClientRouter />
   </head>
   <body>
-    <header class="kepala">
+    <!-- Header (beserta musik dan tombol tema) dipertahankan saat pindah halaman. -->
+    <header class="kepala" transition:persist="kepala">
       <a href="/" class="nama-situs">Kisah Zhuangzi</a>
       <nav>
         <a href="/tentang/">Tentang</a>
+        <MusikLatar />
         <button class="tombol-tema" type="button" hidden>
           <svg viewBox="0 0 20 20" aria-hidden="true">
             <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.3"></circle>
             <path d="M10 3.5 a6.5 6.5 0 0 1 0 13 Z" fill="currentColor"></path>
           </svg>
         </button>
+        <script is:inline src="/js/tema.js" defer></script>
       </nav>
     </header>
     <main>
@@ -82,7 +89,5 @@ const alamatGambar = new URL(gambar, Astro.site);
       </p>
       <p><a href="/rss.xml">Ikuti lewat RSS</a></p>
     </footer>
-
-    <script is:inline src="/js/tema.js" defer></script>
   </body>
 </html>

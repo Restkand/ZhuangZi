@@ -1,6 +1,5 @@
 ---
 import Dasar from './Dasar.astro';
-import MusikLatar from '../components/MusikLatar.astro';
 
 interface Props {
   judul: string;
@@ -25,7 +24,6 @@ const { judul, bab, ilustrasi, ilustrasiAlt, menitBaca, deskripsi, gambar, berik
       <em>Dari kitab Zhuangzi, {bab}</em>
       <span class="waktu-baca">sekitar {menitBaca} menit membaca</span>
     </p>
-    <MusikLatar />
 
     <div class="isi">
       <slot />

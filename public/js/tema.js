@@ -1,7 +1,9 @@
 // Tombol mode malam. Tanpa JavaScript, tombol tetap tersembunyi dan tema mengikuti perangkat.
 (() => {
   const tombol = document.querySelector('.tombol-tema');
-  if (!tombol) return;
+  // Header dipertahankan antarhalaman; jangan pasang pendengar dua kali.
+  if (!tombol || tombol.dataset.siap) return;
+  tombol.dataset.siap = '1';
 
   const akar = document.documentElement;
   const gelap = () =>

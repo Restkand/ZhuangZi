@@ -60,7 +60,8 @@ Tipografi:
 Warna:
 
 - Latar krem pucat seperti kertas, teks abu-abu tua (bukan hitam pekat)
-- Mode malam dengan warna hangat, mengikuti perangkat. Tombol kecil di header untuk memilih sendiri (satu-satunya JavaScript di situs; tanpa JS tombol tersembunyi)
+- Mode malam dengan warna hangat, mengikuti perangkat. Tombol kecil di header untuk memilih sendiri
+- Musik latar opsional (tombol ♪ di header, tanpa autoplay). Navigasi antarhalaman memakai ClientRouter Astro dan header dipertahankan, agar musik tidak terputus. JavaScript hanya untuk ketiga hal ini; tanpa JS situs tetap utuh dan kedua tombol tersembunyi
 
 Halaman kisah:
 
