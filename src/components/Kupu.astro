@@ -1,63 +1,15 @@
 ---
-// Kupu-kupu tinta, lambang situs. Merujuk mimpi kupu-kupu Zhuangzi (Bab 2).
+import { isiKupu, viewBoxKupu } from '../lib/kupu';
+
 interface Props {
   class?: string;
 }
 
 const { class: kelas } = Astro.props;
+const isi = isiKupu({ pekat: 'var(--tinta-pekat)', abu: 'var(--abu-2)', abuMuda: 'var(--abu-3)' });
 ---
 
-<svg
-  class:list={['kupu', kelas]}
-  viewBox="0 0 120 80"
-  aria-hidden="true"
-  fill="none"
-  stroke-linecap="round"
-  stroke-linejoin="round"
->
-  <g transform="rotate(-8 60 40)">
-    <!-- sayap atas -->
-    <path
-      d="M58 38 C48 22 30 12 20 16 C14 19 18 30 28 36 C38 41 50 41 58 40"
-      stroke="var(--tinta-pekat)"
-      stroke-width="1.7"
-    />
-    <path
-      d="M62 38 C72 22 90 12 100 16 C106 19 102 30 92 36 C82 41 70 41 62 40"
-      stroke="var(--tinta-pekat)"
-      stroke-width="1.7"
-    />
-    <!-- sayap bawah -->
-    <path
-      d="M58 43 C48 46 38 52 36 60 C35 66 44 66 50 60 C54 56 57 50 58 45"
-      stroke="var(--tinta-pekat)"
-      stroke-width="1.5"
-    />
-    <path
-      d="M62 43 C72 46 82 52 84 60 C85 66 76 66 70 60 C66 56 63 50 62 45"
-      stroke="var(--tinta-pekat)"
-      stroke-width="1.5"
-    />
-    <!-- urat sayap -->
-    <path
-      d="M56 39 C46 30 34 22 24 20 M64 39 C74 30 86 22 96 20"
-      stroke="var(--abu-2)"
-      stroke-width="0.8"
-    />
-    <path d="M30 26 C36 30 44 34 52 37 M90 26 C84 30 76 34 68 37" stroke="var(--abu-3)" stroke-width="0.7" />
-    <!-- arsiran -->
-    <path
-      d="M40 57 l3 -3 M42 61 l3 -3 M45 63 l3 -3 M80 57 l-3 -3 M78 61 l-3 -3 M75 63 l-3 -3"
-      stroke="var(--abu-2)"
-      stroke-width="0.8"
-    />
-    <!-- badan dan sungut -->
-    <path d="M60 30 C61.6 36 61.6 48 60 57 C58.4 48 58.4 36 60 30 Z" fill="var(--tinta-pekat)" />
-    <path d="M59 31 C56 24 52 20 47 18 M61 31 C64 24 68 20 73 18" stroke="var(--tinta-pekat)" stroke-width="0.9" />
-    <circle cx="47" cy="18" r="1.2" fill="var(--tinta-pekat)" />
-    <circle cx="73" cy="18" r="1.2" fill="var(--tinta-pekat)" />
-  </g>
-</svg>
+<svg class:list={['kupu', kelas]} viewBox={viewBoxKupu} aria-hidden="true" set:html={isi} />
 
 <style>
   .kupu {

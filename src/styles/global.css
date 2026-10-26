@@ -10,8 +10,11 @@
   --serat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* Mode malam: mengikuti perangkat, kecuali pembaca memilih sendiri lewat tombol.
+   Blok warnanya sengaja ditulis dua kali karena CSS belum bisa menggabungkan keduanya. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
     --kertas: #1f1c18;
     --tinta: #e4dccd;
     --tinta-lembut: #a39b8c;
@@ -20,13 +23,27 @@
     --abu-3: #625c52;
     --garis: #4a453d;
     --aksen: #c2574a;
+    --redup: brightness(0.72) sepia(0.25);
     --serat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .85 0 0 0 0 .75 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+}
 
-  /* Ilustrasi berlatar kertas terang; diredupkan sedikit agar tidak menyilaukan. */
-  .ilustrasi {
-    filter: brightness(0.72) sepia(0.25);
-  }
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --kertas: #1f1c18;
+  --tinta: #e4dccd;
+  --tinta-lembut: #a39b8c;
+  --tinta-pekat: #ece4d5;
+  --abu-2: #8f887b;
+  --abu-3: #625c52;
+  --garis: #4a453d;
+  --aksen: #c2574a;
+  --redup: brightness(0.72) sepia(0.25);
+  --serat: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .85 0 0 0 0 .75 0 0 0 .035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
 }
 
 /* Perpindahan halaman memudar pelan, tanpa JavaScript. */
@@ -112,6 +129,38 @@ main,
   text-decoration: none;
 }
 
+.kepala nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tombol-tema {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  margin: -0.5rem -0.5rem -0.5rem 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--tinta-lembut);
+  cursor: pointer;
+}
+
+.tombol-tema[hidden] {
+  display: none;
+}
+
+.tombol-tema svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.tombol-tema:hover {
+  color: var(--tinta-pekat);
+}
+
 .nama-situs {
   font-variant: small-caps;
   letter-spacing: 0.08em;
@@ -174,6 +223,13 @@ p {
   border-top: 1px solid var(--garis);
 }
 
+.keterangan-kelompok {
+  margin: -0.75rem 0 1.5rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--tinta-lembut);
+}
+
 .daftar-kisah {
   list-style: none;
   padding: 0;
@@ -219,6 +275,8 @@ p {
   height: auto;
   margin-top: 2rem;
   border-radius: 12px;
+  /* Di mode malam, ilustrasi berlatar terang diredupkan agar tidak menyilaukan. */
+  filter: var(--redup, none);
 }
 
 .sumber {
@@ -336,12 +394,70 @@ p {
   text-align: center;
 }
 
+.kaki {
+  --ukuran-stempel: 1.35rem;
+}
+
 .kaki .stempel {
-  width: 0.9rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .kaki p {
   max-width: 26rem;
-  margin: 0 auto;
+  margin: 0 auto 0.5rem;
+}
+
+/* Cetak: hanya kisahnya, rapi di atas kertas. */
+@media print {
+  /* Selektor ini selalu cocok, tapi cukup kuat untuk mengalahkan pilihan mode malam. */
+  :root:is([data-theme], :not([data-theme])) {
+    --kertas: #fff;
+    --tinta: #222;
+    --tinta-lembut: #555;
+    --tinta-pekat: #000;
+    --garis: #bbb;
+    --redup: none;
+  }
+
+  html {
+    font-size: 11.5pt;
+  }
+
+  body {
+    background: none;
+  }
+
+  .kepala,
+  .kaki,
+  .berikutnya {
+    display: none;
+  }
+
+  main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .ilustrasi {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  h1,
+  .pemisah {
+    break-after: avoid;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  .renungan {
+    break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
 }

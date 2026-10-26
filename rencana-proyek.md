@@ -53,14 +53,14 @@ Acuan gaya: referensi/contoh-kisah-juru-masak-ding.md
 
 Tipografi:
 
-- Huruf serif, misalnya Lora atau Literata (Google Fonts)
+- Huruf serif Lora, disimpan di situs sendiri lewat @fontsource (tanpa permintaan ke Google)
 - Ukuran sekitar 18px di ponsel, jarak antarbaris lebar (sekitar 1.8)
 - Lebar teks maksimal 60–70 karakter per baris
 
 Warna:
 
 - Latar krem pucat seperti kertas, teks abu-abu tua (bukan hitam pekat)
-- Mode malam dengan warna hangat
+- Mode malam dengan warna hangat, mengikuti perangkat. Tombol kecil di header untuk memilih sendiri (satu-satunya JavaScript di situs; tanpa JS tombol tersembunyi)
 
 Halaman kisah:
 

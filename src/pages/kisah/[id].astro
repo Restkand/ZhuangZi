@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Kisah from '../../layouts/Kisah.astro';
+import { ringkasan } from '../../lib/ringkasan';
 
 export async function getStaticPaths() {
   const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.data.urutan);
@@ -23,6 +24,8 @@ const menitBaca = Math.max(1, Math.ceil(jumlahKata / 200));
   bab={kisah.data.bab}
   ilustrasi={kisah.data.ilustrasi}
   menitBaca={menitBaca}
+  deskripsi={ringkasan(kisah.body ?? '')}
+  gambar={`/og/${kisah.id}.png`}
   berikutnya={berikutnya && { judul: berikutnya.data.judul, href: `/kisah/${berikutnya.id}/` }}
 >
   <Content />

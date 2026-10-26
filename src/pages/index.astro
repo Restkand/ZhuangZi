@@ -7,9 +7,24 @@ const daftar = (await getCollection('kisah')).sort((a, b) => a.data.urutan - b.d
 
 // Kelompokkan menurut pembagian kitab: Bab Dalam, Bab Luar, Bab Campuran.
 const kelompok = [
-  { nama: 'Bab Dalam', dari: 1, sampai: 7 },
-  { nama: 'Bab Luar', dari: 8, sampai: 22 },
-  { nama: 'Bab Campuran', dari: 23, sampai: 33 },
+  {
+    nama: 'Bab Dalam',
+    keterangan: 'Tujuh bab pertama, yang dianggap paling dekat dengan Zhuangzi sendiri.',
+    dari: 1,
+    sampai: 7,
+  },
+  {
+    nama: 'Bab Luar',
+    keterangan: 'Lima belas bab berikutnya, banyak ditulis oleh murid dan penerusnya.',
+    dari: 8,
+    sampai: 22,
+  },
+  {
+    nama: 'Bab Campuran',
+    keterangan: 'Sebelas bab terakhir, kumpulan tulisan dari berbagai tangan.',
+    dari: 23,
+    sampai: 33,
+  },
 ].map((k) => ({
   ...k,
   kisah: daftar.filter((kisah) => {
@@ -27,6 +42,11 @@ const kelompok = [
       Kisah-kisah dari kitab Zhuangzi, diceritakan ulang dalam bahasa Indonesia. Untuk dibaca
       pelan-pelan, satu kisah setiap kali.
     </p>
+    <p class="pengantar">
+      Zhuangzi adalah seorang pemikir Tiongkok yang hidup sekitar abad ke-4 sebelum Masehi. Ia jarang
+      menasihati. Ia lebih suka bercerita: tentang juru masak, kupu-kupu, pohon yang dianggap tak
+      berguna, dan ikan yang berenang di sungai.
+    </p>
 
     {
       daftar.length === 0 && <p class="kosong">Kisah pertama sedang ditulis.</p>
@@ -38,6 +58,7 @@ const kelompok = [
         .map((k) => (
           <section class="kelompok">
             <h2>{k.nama}</h2>
+            <p class="keterangan-kelompok">{k.keterangan}</p>
             <ol class="daftar-kisah">
               {k.kisah.map((kisah) => (
                 <li>
