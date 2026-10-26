@@ -1,0 +1,37 @@
+---
+// Potret Zhuangzi karya yang diatribusikan kepada Hua Zuli (abad ke-14, Dinasti Yuan).
+// Domain publik, dari Wikimedia Commons; file asli dikompres ke WebP di public/gambar/.
+interface Props {
+  // "besar" dengan keterangan untuk halaman Tentang, "kecil" tanpa keterangan untuk beranda.
+  ukuran?: 'besar' | 'kecil';
+}
+
+const { ukuran = 'besar' } = Astro.props;
+const alt =
+  'Lukisan tinta seorang lelaki tua berjanggut dalam jubah putih panjang berlapis bulu bertotol, berdiri dengan tangan tersembunyi di lengan jubah.';
+---
+
+<figure class:list={['potret', `potret-${ukuran}`]}>
+  <img
+    src="/gambar/zhuangzi-720.webp"
+    srcset="/gambar/zhuangzi-360.webp 360w, /gambar/zhuangzi-720.webp 720w"
+    sizes={ukuran === 'besar' ? '(min-width: 600px) 18rem, 70vw' : '6.5rem'}
+    width="720"
+    height="1036"
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+  />
+  {
+    ukuran === 'besar' && (
+      <figcaption>
+        Zhuangzi, dalam bayangan pelukis yang diatribusikan sebagai Hua Zuli (abad ke-14). Tak ada
+        yang tahu rupa aslinya. Domain publik, via{' '}
+        <a href="https://commons.wikimedia.org/wiki/File:%E7%8E%84%E9%96%80%E5%8D%81%E5%AD%90%E5%9C%96_%E8%8E%8A%E5%AD%90.jpg">
+          Wikimedia Commons
+        </a>
+        .
+      </figcaption>
+    )
+  }
+</figure>

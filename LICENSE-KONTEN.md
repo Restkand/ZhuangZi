@@ -19,4 +19,8 @@ Musik latar (`public/musik/`) bukan karya proyek ini dan tetap memakai lisensiny
 (https://commons.wikimedia.org/wiki/File:Pei_Lan.ogg), CC BY 2.5
 (https://creativecommons.org/licenses/by/2.5/).
 
+Potret Zhuangzi (`public/gambar/`) adalah lukisan abad ke-14 yang diatribusikan kepada Hua Zuli (華祖立),
+domain publik, dari Wikimedia Commons
+(https://commons.wikimedia.org/wiki/File:玄門十子圖_莊子.jpg), dikompres ke WebP.
+
 Kode sumber website dilisensikan terpisah di bawah MIT (lihat `LICENSE`).
