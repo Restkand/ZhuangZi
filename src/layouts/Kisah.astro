@@ -1,7 +1,7 @@
 ---
 import Dasar from './Dasar.astro';
 import BagikanKisah from '../components/BagikanKisah.astro';
-import { NAMA, PENULIS } from '../lib/situs';
+import { NAMA, PENULIS, tautanEmail } from '../lib/situs';
 
 interface Props {
   judul: string;
@@ -84,7 +84,8 @@ const dataKisah = {
 
     <p class="catatan">
       Diceritakan ulang dari teks asli Zhuangzi dan terjemahan James Legge (1891), keduanya domain
-      publik, dengan bantuan AI. Bukan terjemahan akademis.
+      publik, dengan bantuan AI. Bukan terjemahan akademis. Menemukan kekeliruan?
+      <a href={tautanEmail(`Kekeliruan di kisah: ${judul}`)}>Kabari saya</a>.
     </p>
 
     {

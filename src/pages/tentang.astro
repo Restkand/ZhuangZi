@@ -1,6 +1,7 @@
 ---
 import Dasar from '../layouts/Dasar.astro';
 import Potret from '../components/Potret.astro';
+import { EMAIL, tautanEmail } from '../lib/situs';
 ---
 
 <Dasar judul="Tentang">
@@ -45,6 +46,24 @@ import Potret from '../components/Potret.astro';
       “Pei Lan (佩蘭)”, dimainkan dengan guqin oleh Charlie Huang, dari
       <a href="https://commons.wikimedia.org/wiki/File:Pei_Lan.ogg">Wikimedia Commons</a>, berlisensi
       <a href="https://creativecommons.org/licenses/by/2.5/">CC BY 2.5</a>.
+    </p>
+
+    <h2 id="menyapa">Menyapa</h2>
+    <p>
+      Bila Anda menemukan kekeliruan dalam sebuah kisah, atau sekadar ingin menyapa, silakan kirim
+      surat ke <a href={tautanEmail('Masukan untuk Pohon Tak Berguna')}>{EMAIL}</a>. Saya
+      membacanya pelan-pelan, sesuai tenaga.
+    </p>
+
+    <h2 id="privasi">Privasi</h2>
+    <p>
+      Situs ini tidak memakai cookie, analitik, atau pelacak apa pun, dan tidak mengumpulkan data
+      pribadi Anda. Huruf, gambar, dan musiknya disajikan dari situs ini sendiri, tanpa layanan pihak
+      ketiga. Pilihan mode malam hanya disimpan di peramban Anda sendiri.
+    </p>
+    <p>
+      Seperti situs lainnya, penyedia hosting (Vercel) mencatat log teknis, misalnya alamat IP, untuk
+      keamanan dan agar layanan tetap berjalan.
     </p>
   </article>
 </Dasar>

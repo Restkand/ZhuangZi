@@ -1,0 +1,33 @@
+# Memeriksa kode sebelum digabung: pemeriksaan tipe (astro check) dan build.
+# Berjalan di runner standar GitHub, gratis tanpa batas menit untuk repositori publik.
+name: Periksa
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Hanya boleh membaca isi repositori; tidak memakai rahasia atau token apa pun.
+permissions:
+  contents: read
+
+# Pemeriksaan lama di cabang yang sama dibatalkan bila ada perubahan baru.
+concurrency:
+  group: periksa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  periksa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Pemeriksaan tipe
+        run: npm run check
+      - name: Build
+        run: npm run build
