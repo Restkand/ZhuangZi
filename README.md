@@ -47,6 +47,14 @@ untuk kisah-kisah di dalam bab yang sama (mulai dari 1). Urutan ini juga menentu
 "Kisah berikutnya". Build akan berhenti dengan pesan jelas bila dua kisah dalam bab yang sama
 memakai `urutan` yang sama.
 
+## Pemeriksaan otomatis
+
+Setiap pull request diperiksa oleh GitHub Actions (`.github/workflows/periksa.yml`):
+pemeriksaan tipe (`npm run check`) lalu build. Dependabot (`.github/dependabot.yml`) membuka
+pull request pembaruan dependensi seminggu sekali.
+
+Skrip pembuat ilustrasi ada di folder `alat/`.
+
 ## Catatan keamanan
 
 - Header keamanan (termasuk Content-Security-Policy) diatur di `vercel.json`.

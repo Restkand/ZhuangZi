@@ -1,0 +1,21 @@
+# Pembaruan dependensi otomatis, dibuat tenang: seminggu sekali, pembaruan kecil
+# digabung dalam satu pull request, dan jumlah pull request terbuka dibatasi.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 3
+    groups:
+      pembaruan-kecil:
+        update-types: [minor, patch]
+    # @astrojs/check baru mendukung TypeScript 5–6; naik versi besar ditahan dulu.
+    ignore:
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

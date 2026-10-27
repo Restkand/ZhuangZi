@@ -1,4 +1,4 @@
-import sharp from 'sharp';
+import sharp, { type OverlayOptions } from 'sharp';
 import { LORA, barisTengah, bungkus } from './teks-gambar.ts';
 
 const KERTAS = '#F3EEE2';
@@ -10,7 +10,7 @@ export async function gambarPratinjau(svg: Buffer, lebar: number, tinggi: number
     .png()
     .toBuffer();
 
-  const lapisan: sharp.OverlayOptions[] = [{ input: isi, gravity: 'center' }];
+  const lapisan: OverlayOptions[] = [{ input: isi, gravity: 'center' }];
   if (stempel) {
     lapisan.push({
       input: Buffer.from(

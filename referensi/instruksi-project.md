@@ -74,8 +74,11 @@ GAYA ILUSTRASI
 Setiap kisah mendapat satu ilustrasi SVG orisinal bergaya tarikan pena atau tinta, disimpan sebagai public/ilustrasi/<nama-kisah>.svg.
 - viewBox="0 0 550 350", latar persegi panjang warna kertas #F3EEE2 dengan rx="12"
 - Tinta utama #2C2C2A. Abu-abu untuk kedalaman: #5F5E5A, #888780, #B4B2A9, #D3D1C7
-- Objek dekat bergaris tebal (1.7 sampai 2.4), objek jauh bergaris tipis (0.8 sampai 1.1) dan lebih abu-abu
-- Bayangan dengan arsiran garis pendek, bukan isian warna atau gradien
+- Garis tipis dan halus: objek utama 1.0 sampai 1.2, detail dan objek jauh 0.6 sampai 0.9 dan lebih abu-abu. Hindari garis tebal
+- Bayangan dengan arsiran garis pendek yang tipis dan samar, bukan isian warna atau gradien
+- Hindari bentuk yang terkesan kekanak-kanakan: spiral, rumpun rumput berbentuk "v", sosok lidi. Rumput cukup goresan halus di sepanjang garis tanah
+- Sosok manusia hanya bila benar-benar perlu; sering kali benda atau alam saja sudah cukup bercerita
+- Gambar hal yang memang disebut dalam kisah, bukan tafsiran yang menambah makna lain
 - stroke-linecap="round" pada semua garis
 - Bentuk meruncing seperti goresan kuas boleh berupa path berisi warna tinta
 - Banyak ruang kosong. Sederhana dan tenang, tidak ramai.

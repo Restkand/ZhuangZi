@@ -90,15 +90,18 @@ Fitur dengarkan (opsional, bisa ditambahkan nanti):
 - viewBox="0 0 550 350", latar kertas #F3EEE2 dengan rx="12"
 - Tinta utama #2C2C2A
 - Abu-abu untuk kedalaman: #5F5E5A, #888780, #B4B2A9, #D3D1C7
-- Objek dekat bergaris tebal (1.7–2.4), objek jauh tipis (0.8–1.1) dan lebih abu-abu
-- Bayangan dengan arsiran garis pendek, bukan isian atau gradien
+- Garis tipis dan halus: objek utama 1.0–1.2, detail dan objek jauh 0.6–0.9 dan lebih abu-abu. Hindari garis tebal
+- Bayangan dengan arsiran garis pendek yang tipis dan samar, bukan isian atau gradien
+- Hindari bentuk yang terkesan kekanak-kanakan: spiral, rumpun rumput berbentuk "v", sosok lidi. Rumput cukup goresan halus di sepanjang garis tanah
+- Sosok manusia hanya bila benar-benar perlu; sering kali benda atau alam saja sudah cukup bercerita
+- Gambar hal yang memang disebut dalam kisah (misalnya pohon chu yang berbonggol dan berdahan berpilin), bukan tafsiran yang menambah makna lain
 - stroke-linecap="round" pada semua garis
 - Bentuk meruncing seperti goresan kuas boleh berupa path berisi warna tinta
 - Banyak ruang kosong
 - Stempel merah kecil #A32D2D di sudut, isinya garis abstrak, bukan huruf sungguhan
 - Tanpa teks di dalam gambar
 
-Acuan gaya: referensi/contoh-ilustrasi-pisau-talenan.svg
+Acuan gaya: referensi/contoh-ilustrasi-pisau-talenan.svg. Skrip pembuat ilustrasi yang sudah tayang ada di folder `alat/`.
 
 ## 7. Teknis
 
