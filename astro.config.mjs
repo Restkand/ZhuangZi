@@ -1,3 +1,4 @@
+import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 import rehypeRenungan from './src/plugins/rehype-renungan.mjs';
@@ -12,7 +13,8 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'never',
   },
+  // Pemroses Markdown remark/rehype dengan plugin yang membungkus bagian renungan.
   markdown: {
-    rehypePlugins: [rehypeRenungan],
+    processor: unified({ rehypePlugins: [rehypeRenungan] }),
   },
 });

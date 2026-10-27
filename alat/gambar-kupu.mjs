@@ -12,7 +12,7 @@ let benih = 11;
 const acak = () => ((benih = (benih * 16807) % 2147483647) / 2147483647);
 const r = (n) => Math.round(n * 10) / 10;
 
-const TINTA = '#2C2C2A', ABU1 = '#5F5E5A', ABU2 = '#888780', ABU3 = '#B4B2A9', ABU4 = '#D3D1C7';
+const TINTA = '#2C2C2A', ABU2 = '#888780', ABU3 = '#B4B2A9', ABU4 = '#D3D1C7';
 const garis = (d, warna, tebal, extra = '') =>
   `<path d="${d}" fill="none" stroke="${warna}" stroke-width="${tebal}" stroke-linecap="round" stroke-linejoin="round"${extra}/>`;
 
